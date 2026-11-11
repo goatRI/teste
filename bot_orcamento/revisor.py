@@ -298,6 +298,9 @@ def revisar_html(caminho: str | Path, total_esperado: float | None = None) -> li
             f"{n_lin} linhas, {len(dados['oportunidades'])} oportunidades, {len(dados['cenarios'])} cenários.")
     except Exception as e:
         add("V05", "Dados embutidos (JSON) válidos e completos", "falha", f"JSON inválido: {e}")
+    caminhos = sorted(set(re.findall(r"(?:[A-Za-z]:\\\\Users\\\\[^\\\"<]+|[A-Za-z]:\\Users\\[^\\\"<]+|/home/[^/\"<\s]+|/Users/[^/\"<\s]+)", html)))
+    add("V06b", "Sem caminhos locais ou nomes de usuário da máquina no arquivo", "falha" if caminhos else "ok",
+        "Nenhum caminho de pasta pessoal encontrado." if not caminhos else "Encontrado: " + ", ".join(caminhos[:3]))
     tam = caminho.stat().st_size
     add("V06", "Tamanho do arquivo", "ok" if tam < 5e6 else ("alerta" if tam < 16e6 else "falha"),
         f"{tam / 1024:.0f} KB")

@@ -118,9 +118,13 @@ def _importar_arquivo(caminho: Path, nome_mod: str) -> ModuleType:
 
 
 def pastas_padrao(extras: list[str | Path] | None = None) -> list[Path]:
-    """Pastas de skills: as extras + .claude/skills do diretório atual e do repositório do bot."""
+    """Pastas de skills: .claude/skills do repositório do bot + as passadas explicitamente.
+
+    O diretório atual NÃO entra: skills são código Python executado pelo bot, e rodar o bot
+    de dentro de uma pasta compartilhada não pode executar código de terceiros sem querer.
+    """
     raiz = Path(__file__).resolve().parents[2]
-    pastas = [Path(p) for p in (extras or [])] + [Path.cwd() / ".claude" / "skills", raiz / ".claude" / "skills"]
+    pastas = [Path(p) for p in (extras or [])] + [raiz / ".claude" / "skills"]
     vistas, out = set(), []
     for p in pastas:
         r = p.resolve()

@@ -39,6 +39,13 @@
       "grupo": "Estrutura do HTML"
     },
     {
+      "id": "V06b",
+      "nome": "Sem caminhos locais ou nomes de usuário da máquina no arquivo",
+      "status": "ok",
+      "detalhe": "Nenhum caminho de pasta pessoal encontrado.",
+      "grupo": "Estrutura do HTML"
+    },
+    {
       "id": "V06",
       "nome": "Tamanho do arquivo",
       "status": "ok",
@@ -119,7 +126,7 @@
       "id": "V17",
       "nome": "Rodapé cita fonte, data-base e revisão",
       "status": "ok",
-      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 13:49 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
+      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 13:59 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
       "grupo": "Texto e formatação"
     },
     {

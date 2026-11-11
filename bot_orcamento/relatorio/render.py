@@ -131,7 +131,7 @@ def dados_embutidos(a: Analise, revisao: dict | None, verificacoes: list[Verific
 
 
 def contexto(a: Analise, revisao: dict, historico: list[dict], verificacoes: list[Verificacao] | None,
-             parecer: dict | None = None) -> dict[str, Any]:
+             parecer: dict | None = None, fontes_externas: bool = True) -> dict[str, Any]:
     estr = a.estrutura
     cen = {c.id: c for c in a.cenarios}
     cat_nome = {c["id"]: c["nome"] for c in a.por_categoria}
@@ -191,7 +191,9 @@ def contexto(a: Analise, revisao: dict, historico: list[dict], verificacoes: lis
 
     st = status_geral(verificacoes)
     dados = dados_embutidos(a, revisao, verificacoes)
-    dados_json = json.dumps(dados, ensure_ascii=False, separators=(",", ":"), default=str).replace("</", "<\\/")
+    # <, > e & viram \uXXXX: nenhum texto da planilha consegue fechar ou abrir tags dentro do bloco de dados
+    dados_json = (json.dumps(dados, ensure_ascii=False, separators=(",", ":"), default=str)
+                  .replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026"))
     return {
         "a": a, "estr": estr, "meta": a.meta, "cen": cen, "cenarios": a.cenarios, "ops": ops, "plano": plano,
         "mapa": mapa, "linhas_tab": linhas_tab, "top_linhas": top_linhas, "cat_nome": cat_nome,
@@ -203,7 +205,7 @@ def contexto(a: Analise, revisao: dict, historico: list[dict], verificacoes: lis
         "CENARIOS_TABELA": [c for c in CENARIOS_TABELA if c in cen], "MESES_NOME": MESES_NOME,
         "meses_real": meses_real, "parecer": parecer,
         "parecer_html": _md_para_html(parecer["texto"]) if parecer and parecer.get("texto") else None,
-        "storage_key": f"bot_orcamento_{a.meta['slug']}_v1",
+        "storage_key": f"bot_orcamento_{a.meta['slug']}_v1", "fontes_externas": fontes_externas,
     }
 
 
@@ -216,7 +218,7 @@ def _ambiente() -> Environment:
 
 
 def renderizar(a: Analise, revisao: dict, historico: list[dict], verificacoes: list[Verificacao] | None,
-               parecer: dict | None = None) -> str:
+               parecer: dict | None = None, fontes_externas: bool = True) -> str:
     env = _ambiente()
     tpl = env.get_template("relatorio.html.j2")
-    return tpl.render(**contexto(a, revisao, historico, verificacoes, parecer))
+    return tpl.render(**contexto(a, revisao, historico, verificacoes, parecer, fontes_externas))

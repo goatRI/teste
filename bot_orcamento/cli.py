@@ -69,7 +69,8 @@ def cmd_analisar(a: argparse.Namespace) -> int:
     an.parecer = parecer
     saida = Path(a.saida) if a.saida else Path("relatorios") / an.meta["slug"]
     res = gerar_relatorio(an, saida, descricao_revisao=a.descricao_revisao, parecer=parecer,
-                          navegador=not a.sem_navegador, pdf=a.pdf, excel=not a.sem_excel, log=log)
+                          navegador=not a.sem_navegador, pdf=a.pdf, excel=not a.sem_excel,
+                          fontes_externas=not a.sem_fontes_externas, log=log)
     if a.json:
         print(json.dumps({"status": res.status, "rev": res.revisao["rev"],
                           "arquivos": {k: str(v) for k, v in res.arquivos.items()}}, ensure_ascii=False))
@@ -221,6 +222,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--pdf", action="store_true", help="Gera também o PDF (A4 paisagem)")
     p.add_argument("--sem-navegador", action="store_true", help="Pula a revisão no navegador")
     p.add_argument("--sem-excel", action="store_true", help="Não gera o Excel")
+    p.add_argument("--sem-fontes-externas", action="store_true",
+                   help="Não referencia Google Fonts: o HTML não faz nenhuma conexão externa")
     p.add_argument("--json", action="store_true", help="Saída resumida em JSON")
     p.add_argument("--silencioso", action="store_true")
     p.set_defaults(f=cmd_analisar)

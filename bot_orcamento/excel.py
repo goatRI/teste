@@ -8,6 +8,14 @@ from .analise import Analise
 from .modelo import NIVEIS, Verificacao
 
 FMT_R = '#,##0.00'
+PERIGOSOS = ("=", "+", "-", "@", "\t", "\r")
+
+
+def _texto_seguro(ws) -> None:
+    """Texto que começa com = + - @ é gravado como texto, não como fórmula (injeção de fórmula)."""
+    for c in ws[ws.max_row]:
+        if isinstance(c.value, str) and c.value.startswith(PERIGOSOS):
+            c.data_type = "s"
 FMT_P = '0.0%'
 
 
@@ -58,6 +66,7 @@ def exportar_excel(a: Analise, destino: str | Path, verificacoes: list[Verificac
     for x in a.estrutura.itens:
         ws.append([x.linha_origem, x.codigo, x.descricao, a.taxonomia.nome(x.categoria), x.centro_custo,
                    x.fornecedor, x.orcado] + [c.valores.get(x.id, x.orcado) for c in a.cenarios])
+        _texto_seguro(ws)
         for col in range(7, 8 + len(a.cenarios)):
             ws.cell(ws.max_row, col).number_format = FMT_R
     n = ws.max_row
@@ -77,6 +86,7 @@ def exportar_excel(a: Analise, destino: str | Path, verificacoes: list[Verificac
         ws.append([o.id, o.titulo, a.taxonomia.nome(o.categoria) if o.categoria else "Várias", o.confianca,
                    o.esforco, o.horizonte, o.base_afetada] + [o.economia(nv) for nv in NIVEIS]
                   + [o.acao, o.indicador, "\n".join(o.evidencias)])
+        _texto_seguro(ws)
         for col in range(7, 11):
             ws.cell(ws.max_row, col).number_format = FMT_R
         for col in (11, 13):
@@ -103,6 +113,7 @@ def exportar_excel(a: Analise, destino: str | Path, verificacoes: list[Verificac
         cabecalho(ws, ["ID", "Grupo", "Verificação", "Resultado", "Detalhe"], [6, 18, 50, 10, 90])
         for v in verificacoes:
             ws.append([v.id, v.grupo, v.nome, v.status, v.detalhe])
+            _texto_seguro(ws)
 
     destino = Path(destino)
     destino.parent.mkdir(parents=True, exist_ok=True)

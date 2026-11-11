@@ -38,7 +38,8 @@ def _verificar(caminho: Path, a: Analise, navegador: bool, pasta_rev: Path, tota
 
 def gerar_relatorio(a: Analise, pasta_saida: str | Path, descricao_revisao: str | None = None,
                     parecer: dict | None = None, navegador: bool = True, pdf: bool = False,
-                    excel: bool = True, total_fonte: float | None = None, log=print) -> Resultado:
+                    excel: bool = True, total_fonte: float | None = None, fontes_externas: bool = True,
+                    log=print) -> Resultado:
     pasta = Path(pasta_saida)
     pasta.mkdir(parents=True, exist_ok=True)
     nome = f"analise-orcamentaria-{a.meta['slug']}"
@@ -49,7 +50,7 @@ def gerar_relatorio(a: Analise, pasta_saida: str | Path, descricao_revisao: str 
     linha_tempo = hist.linha_do_tempo(rev)
 
     # passada 1: relatório com a revisão pendente
-    html_path.write_text(renderizar(a, rev, linha_tempo, None, parecer), encoding="utf-8")
+    html_path.write_text(renderizar(a, rev, linha_tempo, None, parecer, fontes_externas), encoding="utf-8")
     log(f"Relatório gerado (passada 1). Lendo o HTML para revisar: {html_path.name}")
     verif = _verificar(html_path, a, navegador, pasta_rev, total_fonte, None)
     passadas = 1
@@ -58,7 +59,8 @@ def gerar_relatorio(a: Analise, pasta_saida: str | Path, descricao_revisao: str 
     def imprimir(v: list[Verificacao]) -> None:
         rev["status"] = resumo_status(v)
         rev["verificado"] = status_geral(v)["rotulo"]
-        html_path.write_text(renderizar(a, rev, hist.linha_do_tempo(rev), v, parecer), encoding="utf-8")
+        html_path.write_text(renderizar(a, rev, hist.linha_do_tempo(rev), v, parecer, fontes_externas),
+                             encoding="utf-8")
 
     # passadas seguintes: imprime a revisão no relatório e confere de novo o ARQUIVO FINAL
     for _ in range(3):

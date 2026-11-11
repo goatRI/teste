@@ -97,3 +97,20 @@ def test_navegador(analises, tmp_path):
     if v.get("V21") and v["V21"].status == "pulado":
         pytest.skip("Playwright indisponível")
     assert v["V21"].status == "ok" and v["V22"].status == "ok" and v["V24"].status == "ok"
+
+
+def test_seguranca_sem_caminho_local_e_sem_formula(tmp_path):
+    p = tmp_path / "malicioso.csv"
+    p.write_text('Descrição;Orçado\n=HYPERLINK("http://exemplo.invalido","clique");1000\n'
+                 'Diesel <script>alert(1)</script>;2000\n', encoding="utf-8")
+    a = analisar(p, pastas_skills=[], log=lambda *x: None)
+    r = gerar_relatorio(a, tmp_path / "saida", navegador=False, fontes_externas=False, log=lambda *x: None)
+    html = r.html.read_text(encoding="utf-8")
+    assert str(tmp_path) not in html and "<script>alert(1)" not in html
+    assert "fonts.googleapis.com" not in html and "Content-Security-Policy" in html
+    v = {x.id: x for x in r.verificacoes}
+    assert v["V06b"].status == "ok" and v["V04"].status == "ok"
+    wb = openpyxl.load_workbook(r.arquivos["excel"])
+    celulas = [c for row in wb["Orçamento adaptado"].iter_rows() for c in row if isinstance(c.value, str)
+               and c.value.startswith("=HYPERLINK")]
+    assert celulas and all(c.data_type == "s" for c in celulas)

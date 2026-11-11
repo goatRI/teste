@@ -86,6 +86,38 @@ no servidor ligado (`server-side-fallback-2026-07-01`, `fallbacks: "default"`). 
 números**: o parecer passa pela verificação V20 (todo R$ citado precisa existir na análise).
 **Atenção:** `--ia` envia descrições e valores do orçamento à API da Anthropic.
 
+## Segurança e dados confidenciais
+
+O bot roda **localmente**: nenhum dado sai da máquina, exceto se você usar `--ia` (envia descrições e
+valores à API da Anthropic — só com aprovação da área de segurança/dados da empresa).
+
+Proteções embutidas:
+
+| Risco | Proteção |
+|---|---|
+| Relatório vazar caminho/usuário da máquina | Só o nome do arquivo é gravado; a revisão V06b reprova o HTML se achar `C:\\Users\\…`, `/home/…` ou `/Users/…` |
+| Texto da planilha virar código no HTML | Jinja com escape automático; JSON embutido com `<`, `>` e `&` escapados; `Content-Security-Policy` bloqueia qualquer conexão de rede, formulário ou script externo |
+| Fórmula maliciosa no Excel/CSV exportado (`=HYPERLINK(...)`) | Células de texto que começam com `= + - @` são gravadas como texto; o CSV do simulador as neutraliza com `'` |
+| Planilha `.xlsx` maliciosa (XML) | `defusedxml` instalado → o openpyxl o usa automaticamente |
+| Executar código de terceiros | Skills (código Python) só são carregadas de `.claude/skills` **do próprio repositório** ou de pasta passada explicitamente com `--skills` — nunca da pasta atual |
+| Conexão externa ao abrir o relatório | Única é o Google Fonts (degrada sem internet); `--sem-fontes-externas` remove até isso |
+
+O que depende de você:
+
+1. **Dados reais nunca no git.** `relatorios/` e planilhas fora de `exemplos/` já estão no `.gitignore`;
+   não coloque arquivos da empresa em `exemplos/` nem use `git add -f`. O repositório deve ser **privado**.
+2. **O relatório HTML contém o orçamento inteiro, linha a linha** (tabelas e dados do simulador).
+   Quem tiver o arquivo vê tudo. Compartilhe como faria com a planilha original: link do OneDrive
+   restrito a **pessoas específicas** (ou "pessoas da organização"), nunca "qualquer pessoa com o link",
+   e aplique o rótulo de confidencialidade da empresa, se houver. Os mesmos cuidados valem para
+   `analise.json`, o Excel, o PDF e `historico_revisoes.json` (que lista oportunidades e totais).
+3. **Para leitura, prefira o PDF** (`--pdf`): o OneDrive mostra PDF direto no navegador; HTML com script
+   é baixado e aberto localmente, e alguns ambientes corporativos bloqueiam `.html` anexo.
+4. **Simulador e plano de ação** guardam o preenchimento no navegador de quem abriu (localStorage).
+   Em computador compartilhado, use **Salvar base** e limpe os dados do site depois.
+5. **Instale as dependências fixando versões** (`pip install -r requirements.txt` num ambiente virtual)
+   a partir do repositório oficial de pacotes da empresa, se houver.
+
 ## Uso com o Claude Code (o "bot")
 
 - **Agente** [`.claude/agents/bot-orcamento.md`](.claude/agents/bot-orcamento.md): fluxo completo —
@@ -141,7 +173,7 @@ bot_orcamento/
   revisor.py      revisão do HTML final (estática + Chromium via Playwright)
   revisoes.py     histórico Rev. 00, 01…
   excel.py · saida.py · ia.py · skills.py · cli.py · exemplos.py
-tests/            74 testes (leitura, estrutura, detectores, cenários, relatório, revisor, IA, skills)
+tests/            75 testes (leitura, estrutura, detectores, cenários, relatório, revisor, IA, skills)
 ```
 
 Testes: `python -m pytest` (inclui os testes das skills em `.claude/skills/`).

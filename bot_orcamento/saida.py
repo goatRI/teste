@@ -18,7 +18,7 @@ def analise_para_dict(a: Analise, revisao: dict | None = None, verificacoes: lis
         "resumo": a.resumo,
         "insights": a.insights,
         "leitura": {
-            "arquivo": a.leitura.arquivo, "aba": a.leitura.aba, "linha_cabecalho": a.leitura.linha_cabecalho,
+            "arquivo": Path(a.leitura.arquivo).name, "aba": a.leitura.aba, "linha_cabecalho": a.leitura.linha_cabecalho,
             "formato": m.formato, "ano_referencia": m.ano_referencia,
             "colunas": [{"indice": c.indice, "rotulo": c.rotulo, "campo": c.campo,
                          "campo_legivel": ROTULO_CAMPO.get(c.campo or "", None), "motivo": c.motivo}
@@ -39,7 +39,9 @@ def analise_para_dict(a: Analise, revisao: dict | None = None, verificacoes: lis
                       "total_original": c.total_original, "total_adaptado": c.total_adaptado,
                       "economia": c.economia, "economia_pct": c.economia_pct, "selecao": c.selecao,
                       "recomendado": c.recomendado} for c in a.cenarios],
-        "detectores": a.detectores, "skills": a.skills, "premissas": a.premissas,
+        "detectores": [{k: v for k, v in d.items() if k != "traceback"} for d in a.detectores],
+        "skills": [{k: (Path(v).name if k == "pasta" else v) for k, v in sk.items()} for sk in a.skills],
+        "premissas": a.premissas,
         "linhas": [x.para_dict() for x in estr.itens],
         "revisao": revisao and {k: v for k, v in revisao.items() if k != "resumo"},
         "verificacoes": [v.__dict__ for v in (verificacoes or [])],

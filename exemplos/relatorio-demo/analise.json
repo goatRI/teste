@@ -3,11 +3,10 @@
     "titulo": "OPEX Mina Norte 2026 (demonstração)",
     "slug": "opex-mina-norte-2026-demonstracao",
     "arquivo": "orcamento_opex_mina_2026.xlsx",
-    "caminho": "/home/user/teste/exemplos/orcamento_opex_mina_2026.xlsx",
     "hash": "de6bcc1f062e9dc0f7ebc39ac5d6bfe29e4139579dadf33b5d532ac77a9d0ec6",
     "aba": "OPEX 2026",
     "data_base": "2026",
-    "gerado_em": "2026-11-11T13:49:22",
+    "gerado_em": "2026-11-11T13:59:14",
     "bot": "Bot de Orçamento",
     "versao_bot": "1.0.0",
     "formato": "xlsx",
@@ -21,7 +20,7 @@
     "Nas 49 linhas com histórico, o orçamento cresce +7,6% sobre o ano anterior (R$ 145,8 mi → R$ 156,9 mi), frente a uma inflação de referência de 4,5%."
   ],
   "leitura": {
-    "arquivo": "exemplos/orcamento_opex_mina_2026.xlsx",
+    "arquivo": "orcamento_opex_mina_2026.xlsx",
     "aba": "OPEX 2026",
     "linha_cabecalho": 4,
     "formato": "largo",
@@ -2891,7 +2890,7 @@
     {
       "nome": "compras-emergenciais",
       "tipo": "detector",
-      "pasta": "/home/user/teste/.claude/skills/compras-emergenciais",
+      "pasta": "compras-emergenciais",
       "status": "carregada",
       "erro": ""
     }
@@ -5272,7 +5271,7 @@
   ],
   "revisao": {
     "rev": 1,
-    "data": "2026-11-11T13:49:22",
+    "data": "2026-11-11T13:59:14",
     "descricao": "Inclusão do parecer do analista",
     "alteracoes": [
       "Parecer do analista incluído."
@@ -5316,6 +5315,13 @@
       "nome": "Dados embutidos (JSON) válidos e completos",
       "status": "ok",
       "detalhe": "51 linhas, 27 oportunidades, 7 cenários.",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V06b",
+      "nome": "Sem caminhos locais ou nomes de usuário da máquina no arquivo",
+      "status": "ok",
+      "detalhe": "Nenhum caminho de pasta pessoal encontrado.",
       "grupo": "Estrutura do HTML"
     },
     {
@@ -5399,7 +5405,7 @@
       "id": "V17",
       "nome": "Rodapé cita fonte, data-base e revisão",
       "status": "ok",
-      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 13:49 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
+      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 13:59 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
       "grupo": "Texto e formatação"
     },
     {

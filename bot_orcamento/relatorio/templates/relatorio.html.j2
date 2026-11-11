@@ -4,11 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'{% if fontes_externas %} https://fonts.googleapis.com{% endif %}; font-src{% if fontes_externas %} https://fonts.gstatic.com{% else %} 'none'{% endif %}; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
 <meta name="generator" content="{{ meta.bot }} {{ meta.versao_bot }}">
 <title>Análise orçamentária — {{ meta.titulo }}</title>
+{% if fontes_externas %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endif %}
 <style>
 :root{
   --bg:#F7F3EA;--panel:#FFFFFF;--panel-2:#F0E9D8;--panel-3:#FBF8F1;
@@ -860,7 +864,7 @@ function renderSim(){
   var ids = Object.keys(cats).sort(function(a, b){ return cats[b].o - cats[a].o; });
   var tb = document.getElementById('sim-cat');
   if(tb){ tb.innerHTML = ids.map(function(id){ var c = cats[id];
-    return '<tr><td class="small">' + (RAW.categorias[id] || id).replace(/</g, '&lt;') + '</td><td class="num">' + BRL(c.o) +
+    return '<tr><td class="small">' + String(RAW.categorias[id] || id).replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</td><td class="num">' + BRL(c.o) +
       '</td><td class="num">' + BRL(c.s) + '</td><td class="num">' + BRL(c.o - c.s) + '</td></tr>'; }).join(''); }
   var ct = document.getElementById('sim-cat-tot'); if(ct) ct.textContent = BRL(r.soma);
   var ce = document.getElementById('sim-cat-eco'); if(ce) ce.textContent = BRL(eco);
@@ -908,7 +912,8 @@ var bcsv = document.getElementById('btn-csv');
 if(bcsv) bcsv.addEventListener('click', function(){
   var r = calcular(state.simulacao);
   var linhas = ['Linha;Código;Descrição;Categoria;Centro de custo;Orçado;Simulado;Redução'];
-  function cel(s){ s = String(s == null ? '' : s); return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+  function cel(s){ s = String(s == null ? '' : s); if(/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
   function dec(v){ return v.toFixed(2).replace('.', ','); }
   LINHAS.forEach(function(l){ linhas.push([l.lo, cel(l.cod), cel(l.desc), cel(RAW.categorias[l.cat] || l.cat), cel(l.cc), dec(l.orc), dec(r.val[l.id]), dec(l.orc - r.val[l.id])].join(';')); });
   baixar(nomeArquivo() + '.csv', '﻿' + linhas.join('\n'), 'text/csv;charset=utf-8'); msg('CSV exportado', 'ok');

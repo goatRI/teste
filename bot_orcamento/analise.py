@@ -225,7 +225,7 @@ def analisar(caminho: str | Path, aba: str | None = None, mapa: dict[str, str] |
                   "corte de materialidade com os dados disponíveis.")
 
     meta = {
-        "titulo": t, "slug": slug(t), "arquivo": Path(caminho).name, "caminho": str(Path(caminho).resolve()),
+        "titulo": t, "slug": slug(t), "arquivo": Path(caminho).name,
         "hash": _hash_arquivo(caminho), "aba": leitura.aba, "data_base": db,
         "gerado_em": _dt.datetime.now().replace(microsecond=0).isoformat(),
         "bot": NOME_BOT, "versao_bot": __version__, "formato": leitura.formato_arquivo,
