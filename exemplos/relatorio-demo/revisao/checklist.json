@@ -1,0 +1,189 @@
+{
+  "rev": 1,
+  "status": "aprovado",
+  "passadas": 2,
+  "verificacoes": [
+    {
+      "id": "V01",
+      "nome": "HTML bem formado (todas as tags abertas são fechadas)",
+      "status": "ok",
+      "detalhe": "Nenhum erro de aninhamento.",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V02",
+      "nome": "Cabeçalho do documento (doctype, idioma pt-BR, charset, título)",
+      "status": "ok",
+      "detalhe": "lang='pt-BR', título='Análise orçamentária — OPEX Mina Norte 2026 (demonstração)'",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V03",
+      "nome": "Seções obrigatórias presentes e na ordem",
+      "status": "ok",
+      "detalhe": "10 seções: resumo → estrutura → raio-x → oportunidades → cenarios → simulador → plano → riscos → premissas → revisoes",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V04",
+      "nome": "Arquivo autocontido (abre sem internet)",
+      "status": "ok",
+      "detalhe": "Só as fontes vêm do Google Fonts e degradam para fontes do sistema sem internet.",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V05",
+      "nome": "Dados embutidos (JSON) válidos e completos",
+      "status": "ok",
+      "detalhe": "51 linhas, 27 oportunidades, 7 cenários.",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V06",
+      "nome": "Tamanho do arquivo",
+      "status": "ok",
+      "detalhe": "345 KB",
+      "grupo": "Estrutura do HTML"
+    },
+    {
+      "id": "V07",
+      "nome": "Total exibido = soma das linhas do orçamento",
+      "status": "ok",
+      "detalhe": "Soma das 51 linhas = R$ 161.828.000,00; 5 ocorrência(s) no HTML.",
+      "grupo": "Números"
+    },
+    {
+      "id": "V08",
+      "nome": "Soma dos itens confere com o total declarado no arquivo",
+      "status": "ok",
+      "detalhe": "Itens R$ 161.828.000,00 × declarado R$ 161.828.000,00",
+      "grupo": "Números"
+    },
+    {
+      "id": "V09",
+      "nome": "Cenários recalculados de forma independente a partir dos dados",
+      "status": "ok",
+      "detalhe": "7 cenários recalculados linha a linha.",
+      "grupo": "Números"
+    },
+    {
+      "id": "V10",
+      "nome": "Cada número exibido confere com os dados",
+      "status": "ok",
+      "detalhe": "158 valores conferidos (texto exibido × valor × dado de origem).",
+      "grupo": "Números"
+    },
+    {
+      "id": "V11",
+      "nome": "Ordem lógica: conservador ≤ base ≤ agressivo",
+      "status": "ok",
+      "detalhe": "R$ 9.666.782,17 ≤ R$ 17.411.377,14 ≤ R$ 25.891.405,29",
+      "grupo": "Números"
+    },
+    {
+      "id": "V12",
+      "nome": "Economias dentro dos limites (≥ 0 e ≤ valor afetado)",
+      "status": "ok",
+      "detalhe": "Todas as oportunidades e cenários dentro dos limites.",
+      "grupo": "Números"
+    },
+    {
+      "id": "V13",
+      "nome": "Soma das categorias = total",
+      "status": "ok",
+      "detalhe": "25 categorias somam R$ 161.828.000,00.",
+      "grupo": "Números"
+    },
+    {
+      "id": "V14",
+      "nome": "Cada oportunidade tem cartão, ação recomendada e âncora própria",
+      "status": "ok",
+      "detalhe": "27 oportunidades, 27 cartões, 27 ações recomendadas.",
+      "grupo": "Números"
+    },
+    {
+      "id": "V15",
+      "nome": "Sem valores nulos, não numéricos ou marcadores de template no texto",
+      "status": "ok",
+      "detalhe": "Nenhum artefato de geração no texto visível.",
+      "grupo": "Texto e formatação"
+    },
+    {
+      "id": "V16",
+      "nome": "Valores monetários no padrão pt-BR (R$ 1.234,56)",
+      "status": "ok",
+      "detalhe": "1714 valores em reais conferidos.",
+      "grupo": "Texto e formatação"
+    },
+    {
+      "id": "V17",
+      "nome": "Rodapé cita fonte, data-base e revisão",
+      "status": "ok",
+      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 13:49 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
+      "grupo": "Texto e formatação"
+    },
+    {
+      "id": "V18",
+      "nome": "Acessibilidade básica (gráficos e campos rotulados)",
+      "status": "ok",
+      "detalhe": "2 gráfico(s) SVG com descrição; campos de formulário rotulados.",
+      "grupo": "Texto e formatação"
+    },
+    {
+      "id": "V19",
+      "nome": "Tabelas de valores têm linha de total",
+      "status": "ok",
+      "detalhe": "13 tabela(s) com total.",
+      "grupo": "Texto e formatação"
+    },
+    {
+      "id": "V20",
+      "nome": "Valores citados no parecer existem na análise",
+      "status": "ok",
+      "detalhe": "16 valor(es) citados conferidos.",
+      "grupo": "Texto e formatação"
+    },
+    {
+      "id": "V21",
+      "nome": "Abre no navegador sem erro de JavaScript (offline)",
+      "status": "ok",
+      "detalhe": "Página carregada sem internet; script concluído.",
+      "grupo": "Navegador"
+    },
+    {
+      "id": "V22",
+      "nome": "Simulador recalcula no navegador igual ao cenário base",
+      "status": "ok",
+      "detalhe": "Navegador: R$ 17.411.377,14 × Python: R$ 17.411.377,14",
+      "grupo": "Navegador"
+    },
+    {
+      "id": "V23",
+      "nome": "Interatividade (troca de cenário e simulação)",
+      "status": "ok",
+      "detalhe": "Troca de cenário e desligar/religar oportunidade funcionam.",
+      "grupo": "Navegador"
+    },
+    {
+      "id": "V24",
+      "nome": "Layout no celular (390 px) sem rolagem horizontal",
+      "status": "ok",
+      "detalhe": "largura do conteúdo 390 px × tela 390 px",
+      "grupo": "Navegador"
+    },
+    {
+      "id": "V25",
+      "nome": "Nenhuma seção renderizada vazia",
+      "status": "ok",
+      "detalhe": "Todas as seções têm conteúdo.",
+      "grupo": "Navegador"
+    },
+    {
+      "id": "V26",
+      "nome": "Capturas de tela para leitura visual",
+      "status": "ok",
+      "detalhe": "relatorio-desktop.png e relatorio-celular.png gravados em revisao/",
+      "grupo": "Navegador"
+    }
+  ]
+}

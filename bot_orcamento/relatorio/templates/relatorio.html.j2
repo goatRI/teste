@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="generator" content="{{ meta.bot }} {{ meta.versao_bot }}">
+<title>Análise orçamentária — {{ meta.titulo }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F3EA;--panel:#FFFFFF;--panel-2:#F0E9D8;--panel-3:#FBF8F1;
+  --line:#DDD3BC;--line-2:#EAE2CF;--gridline:#CFC2A3;
+  --ink:#2B2620;--muted:#7A7062;
+  --gold:#B4842A;--gold-dim:#D8B876;--gold-soft:#E8D9B4;--gold-deep:#8A6320;
+  --hdr-ink:#1B1712;--hdr-ink-2:#2A241B;
+  --ok:#3E8E5A;--ok-soft:#DDEBE0;--warn:#D69420;--warn-soft:#F6E7C4;--warn-ink:#8A5A0E;
+  --bad:#C0503B;--bad-soft:#F2D9D2;--bad-vivid:#E12E12;--run:#6FB98F;
+  --plan:#C9BDA0;--plan-soft:#EDE6D3;--plan-line:#A6906A;
+  --sans:'Inter',-apple-system,'Segoe UI',sans-serif;
+  --head:'Space Grotesk',var(--sans);
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:58px}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;padding:0 0 60px}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+a{color:var(--gold-deep)}
+h2,h3,h4{font-family:var(--head);letter-spacing:-.01em}
+h3{font-size:15.5px;margin:0 0 10px}
+h4{font-size:14px;margin:14px 0 6px}
+p{margin:0 0 10px}
+
+.letterhead{background:var(--hdr-ink);border-bottom:3px solid var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.letterhead-inner{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.lh-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:5px;display:flex;gap:10px;align-items:center}
+.lh-eyebrow::before{content:'';width:18px;height:1px;background:var(--gold-dim);display:inline-block}
+.letterhead h1{font-family:var(--head);font-weight:600;font-size:21px;margin:0;letter-spacing:-.01em;color:#F7F3EA;max-width:760px}
+.letterhead h1 span{color:var(--gold-dim)}
+.lh-right{margin-left:auto;display:flex;gap:14px;flex-shrink:0}
+.lh-period{display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.lh-period label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dim)}
+.lh-period .lh-val{font-family:var(--mono);font-size:12px;color:#F7F3EA;background:var(--hdr-ink-2);border:1px solid var(--gold-dim);border-radius:6px;padding:5px 9px;white-space:nowrap}
+
+.nav{position:sticky;top:0;z-index:20;background:rgba(247,243,234,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(4px)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:8px 24px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin}
+.nav a{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:16px;white-space:nowrap;border:1px solid transparent}
+.nav a:hover{border-color:var(--gold);color:var(--ink)}
+.nav a b{color:var(--gold-deep);font-weight:600;margin-right:4px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px}
+.secao{margin:10px 0 40px}
+.sec-head{display:flex;align-items:flex-start;gap:14px;margin:0 0 16px;padding-top:6px;border-top:1px solid var(--line)}
+.sec-n{font-family:var(--mono);font-size:12px;color:#fff;background:var(--gold);border-radius:6px;padding:3px 8px;margin-top:16px}
+.sec-head h2{font-size:20px;margin:12px 0 2px}
+.sec-sub{color:var(--muted);font-size:12.5px;margin:0;max-width:860px}
+
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label,.lbl-mono{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+select,input[type=text],input[type=search],input[type=date]{font-family:var(--sans);font-size:13.5px;color:var(--ink);background:var(--panel-3);border:1px solid var(--line);border-radius:7px;padding:7px 10px;outline:none;max-width:100%}
+select:focus-visible,input:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.btn{font-family:var(--sans);font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--panel-3);color:var(--ink);border-radius:8px;padding:8px 13px;cursor:pointer;transition:.12s;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--gold)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.gold:hover{filter:brightness(1.05)}
+.filebtn input{display:none}
+.loadmsg{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto}
+.loadmsg.ok{color:var(--ok)} .loadmsg.err{color:var(--bad-vivid)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--panel-3);color:var(--ink);border-radius:20px;padding:6px 12px;cursor:pointer;transition:.12s}
+.chip:hover{border-color:var(--gold)}
+.chip.active{background:var(--gold);border-color:var(--gold);color:#fff}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+.kpi .l{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:600}
+.kpi .v{font-size:21px;font-weight:700;margin-top:6px;letter-spacing:-.4px}
+.kpi .v .num{font-variant-numeric:normal;font-feature-settings:normal}
+.kpi .f{font-size:12px;color:var(--muted);margin-top:3px}
+.kpi .v.pos{color:var(--ok)} .kpi .v.neg{color:var(--bad)}
+
+.badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;display:inline-block}
+.b-none{background:var(--panel-2);color:var(--muted)}
+.b-wait{background:var(--warn-soft);color:var(--warn-ink)}
+.b-ok{background:var(--ok-soft);color:var(--ok)}
+.b-bad{background:var(--bad-soft);color:var(--bad)}
+.b-gold{background:var(--gold-soft);color:var(--gold-deep)}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;position:relative;box-shadow:0 1px 2px rgba(43,38,32,.06),0 8px 24px rgba(43,38,32,.05);margin-bottom:16px;min-width:0}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.card-title{font-weight:700;font-size:15px;font-family:var(--head)}
+.card-sub{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid2>.card,.grid3>.card{margin-bottom:0}
+.stack>*+*{margin-top:16px}
+.highlight{display:flex;align-items:baseline;gap:8px;padding:11px 13px;background:var(--panel-3);border-radius:10px;margin-bottom:12px}
+.highlight .l{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600}
+.highlight .v{font-size:18px;font-weight:700;margin-left:auto;color:var(--ok)}
+.v.pos{color:var(--ok)} .v.neg{color:var(--bad)} .v.zero{color:var(--muted)}
+.lead{font-size:15.5px;line-height:1.55;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:14px 18px;margin:0 0 16px}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+.tiny{font-size:11.5px;color:var(--muted)}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:3px 0}
+dl.ficha{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:0;font-size:13px}
+dl.ficha dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+dl.ficha dd{margin:0;overflow-wrap:anywhere}
+dl.ficha.valores dd{font-size:15px;font-weight:700}
+.empty{background:var(--panel);border:1px dashed var(--line);border-radius:14px;padding:30px 22px;text-align:center;color:var(--muted)}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.tbl-wrap.alto{max-height:560px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--panel-2);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1;white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid var(--line-2);vertical-align:top}
+td.num,th.num{text-align:right;white-space:nowrap}
+tbody tr:hover td{background:var(--panel-3)}
+tfoot td{font-weight:700;border-top:2px solid var(--line);background:var(--panel-3);position:sticky;bottom:0}
+tr.destaque td{background:#FBF4E4}
+td .sub{display:block;font-size:11.5px;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:12px}
+td.mono,.nw{white-space:nowrap}
+
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar-row{display:grid;grid-template-columns:minmax(110px,230px) minmax(0,1fr) minmax(92px,auto);gap:10px;align-items:center;font-size:12.5px}
+.bar-row .bl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{height:14px;position:relative}
+.bar{height:100%;background:var(--gold);border-radius:0 4px 4px 0;min-width:2px}
+.bar.plan{background:var(--plan)}
+.bar.ok{background:var(--ok)}
+.bar-row .bv{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar-row .bv small{color:var(--muted);margin-left:4px}
+
+.mixbar{display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;background:var(--panel)}
+.mixbar>div{height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+svg.viz{width:100%;height:auto;display:block}
+svg.viz .tick{font-family:var(--mono);font-size:10.5px;fill:var(--muted)}
+svg.viz .lbl{font-family:var(--sans);font-size:12px;fill:var(--ink);font-weight:600}
+
+.ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.op-card{margin-bottom:0;display:flex;flex-direction:column}
+.op-id{font-family:var(--mono);font-size:11px;color:var(--gold-deep);letter-spacing:.08em}
+.op-meta{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.op-faixa{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;font-size:12px}
+.op-faixa div{background:var(--panel-3);border-radius:8px;padding:7px 9px}
+.op-faixa .l{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.op-faixa .num{display:block;font-weight:700;font-size:13px}
+.op-card p{font-size:13px}
+.op-card .acao{background:var(--panel-3);border-left:3px solid var(--gold);padding:9px 11px;border-radius:0 8px 8px 0;font-size:13px}
+details{margin-top:auto;padding-top:10px}
+details>summary{cursor:pointer;font-weight:600;font-size:12.5px;color:var(--gold-deep);list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:'▸ ';}
+details[open]>summary::before{content:'▾ ';}
+details .tbl-wrap{margin-top:8px}
+.hidden{display:none!important}
+
+.cen-det{display:none}
+.cen-det.on{display:block}
+.mini-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.mini-kpis div{background:var(--panel-3);border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;min-width:0}
+.mini-kpis.tres{grid-template-columns:repeat(3,1fr)}
+.mini-kpis .l{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.mini-kpis .num{display:block;font-size:16px;font-weight:700;margin-top:2px;overflow-wrap:anywhere}
+.nota{font-size:12.5px;background:var(--warn-soft);color:#5E4510;border-radius:8px;padding:9px 12px;margin:0 0 12px}
+.nota.info{background:var(--plan-soft);color:var(--ink)}
+
+.plano-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.plano-col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.plano-col h3{margin:0 0 2px}
+.plano-col ol{margin:8px 0 0;padding-left:18px;font-size:12.5px}
+.plano-col li{margin:4px 0}
+td input[type=text],td input[type=date],td select{width:100%;min-width:110px;font-size:12.5px;padding:6px 8px}
+
+.alerta{border-left:4px solid var(--warn)}
+.alerta.alta{border-left-color:var(--bad)}
+.alerta.baixa,.alerta.info{border-left-color:var(--plan-line)}
+.status-banner{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;margin-bottom:16px;border:1px solid var(--line);background:var(--panel)}
+.status-banner .big{font-family:var(--head);font-size:17px;font-weight:700}
+.parecer{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:16px}
+.parecer h4:first-child{margin-top:0}
+
+footer.credit{max-width:1180px;margin:20px auto 0;padding:16px 24px 0;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line)}
+
+@media print{
+  body{background:#fff;padding:0}
+  .nav,.toolbar,.btn,.chip,.chips,.no-print{display:none!important}
+  .card,.kpi,.op-card,tr{break-inside:avoid;box-shadow:none}
+  .secao{break-before:page;margin-top:0}
+  #resumo{break-before:auto}
+  .tbl-wrap.alto{max-height:none;overflow:visible}
+  details{display:block}
+  details>*{display:block}
+  .cen-det{display:none}.cen-det.on{display:block}
+  th{position:static} tfoot td{position:static}
+  .letterhead,.sec-n,.bar,.mixbar>div,.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{size:A4 landscape;margin:12mm}
+}
+@media(max-width:900px){
+  .kpis,.mini-kpis{grid-template-columns:1fr 1fr}
+  .grid2,.grid3,.ops,.plano-cols{grid-template-columns:minmax(0,1fr)}
+  .lh-right{margin-left:0}
+}
+@media(max-width:560px){
+  .wrap,.letterhead-inner,.nav-inner,footer.credit{padding-left:16px;padding-right:16px}
+  .kpis{grid-template-columns:1fr}
+  .mini-kpis,.mini-kpis.tres{grid-template-columns:1fr 1fr}
+  .bar-row{grid-template-columns:minmax(80px,120px) minmax(0,1fr) auto}
+  .op-faixa{grid-template-columns:1fr}
+  .toolbar{flex-direction:column;align-items:stretch}
+  .loadmsg{margin-left:0}
+  .lh-right{flex-wrap:wrap}
+  .lh-period{align-items:flex-start}
+  .lh-period .lh-val,.badge{white-space:normal}
+  .status-banner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="letterhead"><div class="letterhead-inner">
+  <div>
+    <div class="lh-eyebrow">Análise orçamentária · {{ meta.aba }}</div>
+    <h1>{{ meta.titulo }} <span>— oportunidades de redução de custos</span></h1>
+  </div>
+  <div class="lh-right">
+    <div class="lh-period"><label>Data-base</label><div class="lh-val">{{ meta.data_base }}</div></div>
+    <div class="lh-period"><label>Revisão</label><div class="lh-val">Rev. {{ '%02d'|format(revisao.rev) }} · {{ status.curto }}</div></div>
+  </div>
+</div></header>
+
+<nav class="nav no-print" aria-label="Seções do relatório"><div class="nav-inner">
+  <a href="#resumo"><b>01</b>Resumo</a><a href="#estrutura"><b>02</b>Leitura da estrutura</a>
+  <a href="#raio-x"><b>03</b>Raio-X</a><a href="#oportunidades"><b>04</b>Oportunidades</a>
+  <a href="#cenarios"><b>05</b>Cenários</a><a href="#simulador"><b>06</b>Simulador</a>
+  <a href="#plano"><b>07</b>Plano de ação</a><a href="#riscos"><b>08</b>Riscos</a>
+  <a href="#premissas"><b>09</b>Premissas</a><a href="#revisoes"><b>10</b>Revisões</a>
+</div></nav>
+
+<main class="wrap">
+{% set base = cen['base'] %}{% set conserv = cen['conservador'] %}{% set agr = cen['agressivo'] %}
+{# ============================================================ 01 RESUMO #}
+<section id="resumo" class="secao">
+  <div class="sec-head"><span class="sec-n">01</span><div><h2>Resumo executivo</h2>
+    <p class="sec-sub">O que o bot encontrou no orçamento, onde está o dinheiro e quanto dá para reduzir em cada cenário.</p></div></div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Orçamento analisado</div><div class="v">{{ v('total_orcado', estr.total_itens, 'brl_curto') }}</div>
+      <div class="f">{{ v('n_linhas', estr.itens|length, 'int') }} linhas · {{ estr.agregadoras|length }} subtotais excluídos</div></div>
+    <div class="kpi"><div class="l">Redução potencial · base</div><div class="v pos">{{ v('cenario:base:economia', base.economia, 'brl_curto') }}</div>
+      <div class="f">{{ v('cenario:base:pct', base.economia_pct, 'pct') }} do total · faixa {{ v('cenario:conservador:economia', conserv.economia, 'brl_curto') }} a {{ v('cenario:agressivo:economia', agr.economia, 'brl_curto') }}</div></div>
+    {% set qw = ops|selectattr('o.esforco','equalto','baixo')|selectattr('o.horizonte','equalto','curto')|list %}
+    <div class="kpi"><div class="l">Oportunidades</div><div class="v">{{ v('n_oportunidades', ops|length, 'int') }}</div>
+      <div class="f">{{ plural(qw|length, 'ganho rápido', 'ganhos rápidos') }} · {{ ops|selectattr('o.confianca','equalto','alta')|list|length }} de alta confiança</div></div>
+    <div class="kpi"><div class="l">Revisão do relatório</div><div class="v"><span class="badge {{ status.classe }}">{{ status.rotulo }}</span></div>
+      <div class="f">Rev. {{ '%02d'|format(revisao.rev) }} · {{ verificacoes|length if verificacoes else 0 }} verificações no HTML final</div></div>
+  </div>
+
+  <p class="lead">{{ a.resumo }}</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-top"><div><div class="card-title">Quanto dá para reduzir, por cenário</div>
+        <div class="card-sub">Economia já sem dupla contagem entre alavancas que atingem a mesma linha.</div></div></div>
+      <div class="bars">
+      {% for c in cenarios %}
+        <div class="bar-row"><div class="bl" title="{{ c.descricao }}">{% if c.recomendado %}<strong>{{ c.nome }}</strong>{% else %}{{ c.nome }}{% endif %}</div>
+          <div class="bar-track"><div class="bar {{ '' if c.recomendado else 'plan' }}" style="width:{{ [100 * c.economia / max_eco_cen, 0]|max|round(2) }}%"></div></div>
+          <div class="bv">{{ c.economia|brl_curto }}<small>{{ pct(c.economia_pct) }}</small></div></div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top"><div><div class="card-title">Maiores oportunidades</div>
+        <div class="card-sub">Ordenadas por prioridade (economia × confiança ÷ esforço).</div></div></div>
+      {% if ops %}
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>#</th><th>Oportunidade</th><th class="num">Economia base</th></tr></thead>
+        <tbody>
+        {% for d in ops[:6] %}
+          <tr><td class="mono">{{ d.o.id }}</td><td><a href="#{{ d.o.id }}">{{ d.o.titulo }}</a><span class="sub">{{ NOME_CONF[d.o.confianca] }} confiança · esforço {{ NOME_ESFORCO[d.o.esforco]|lower }} · {{ NOME_HORIZONTE[d.o.horizonte] }}</span></td>
+            <td class="num">{{ d.eco.base|brl }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}<div class="empty">Nenhuma oportunidade acima do corte de materialidade.</div>{% endif %}
+    </div>
+  </div>
+
+  {% if a.alertas %}
+  <p class="nota" style="margin-top:16px"><strong>{{ plural(a.alertas|length, 'ponto de atenção', 'pontos de atenção') }}</strong> — {{ a.alertas[0].titulo }}{% if a.alertas|length > 1 %} e outros{% endif %}. Ver <a href="#riscos">seção 08</a>.</p>
+  {% endif %}
+
+  {% if parecer_html %}
+  <div class="parecer">
+    <div class="card-top"><div><div class="card-title">Parecer do analista</div>
+      <div class="card-sub">{{ parecer.origem }}{% if parecer.aviso %} · {{ parecer.aviso }}{% endif %}</div></div></div>
+    {{ parecer_html }}
+  </div>
+  {% endif %}
+</section>
+
+{# ============================================================ 02 ESTRUTURA #}
+<section id="estrutura" class="secao">
+  <div class="sec-head"><span class="sec-n">02</span><div><h2>Como o bot leu o orçamento</h2>
+    <p class="sec-sub">Antes de propor qualquer corte, o bot mostra o que entendeu do arquivo: onde está o cabeçalho, o que cada coluna significa, o que é item e o que é subtotal, e se os totais batem.</p></div></div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px">Arquivo e estrutura</div>
+      <dl class="ficha">
+        <dt>Arquivo</dt><dd>{{ meta.arquivo }} <span class="tiny">({{ meta.formato|upper }})</span></dd>
+        <dt>Aba</dt><dd>{{ meta.aba }}{% if a.leitura.abas_avaliadas|length > 1 %} <span class="tiny">· {{ a.leitura.abas_avaliadas|length }} abas avaliadas</span>{% endif %}</dd>
+        <dt>Cabeçalho</dt><dd>linha {{ a.leitura.linha_cabecalho }}{% if a.leitura.mapeamento.formato == 'longo' %} · formato de lançamentos (pivotado){% endif %}</dd>
+        <dt>Estrutura</dt><dd>{{ estr.hierarquia }}</dd>
+        <dt>Linhas</dt><dd>{{ estr.itens|length }} itens analisados · {{ estr.agregadoras|length }} subtotais/totais fora da soma · {{ a.leitura.cabecalhos_grupo|length }} títulos de grupo</dd>
+        <dt>Ano de ref.</dt><dd>{{ a.leitura.mapeamento.ano_referencia or '—' }}</dd>
+        <dt>Dados</dt><dd>{% for k, rot in [('meses','meses'),('realizado','realizado'),('ano_anterior','ano anterior'),('fornecedor','fornecedor'),('centro_custo','centro de custo'),('preco_unitario','qtd × preço')] %}<span class="badge {{ 'b-ok' if estr.tem.get(k) else 'b-none' }}" style="margin:0 4px 4px 0">{{ '✓' if estr.tem.get(k) else '—' }} {{ rot }}</span>{% endfor %}</dd>
+        <dt>Classificação</dt><dd>{{ pct(estr.cobertura_classificacao) }} do valor classificado em categorias de custo</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <div class="card-top"><div class="card-title">Conciliação de totais</div>
+        <span class="badge {{ {'ok':'b-ok','divergente':'b-bad','sem_total':'b-none'}[estr.conciliacao.status] }}">{{ {'ok':'Confere','divergente':'Divergente','sem_total':'Sem total no arquivo'}[estr.conciliacao.status] }}</span></div>
+      <dl class="ficha valores" style="margin-bottom:12px">
+        <dt>Soma dos itens</dt><dd>{{ v('total_orcado', estr.total_itens, 'brl') }}</dd>
+        <dt>Total do arquivo</dt><dd>{% if estr.total_declarado is not none %}{{ v('total_declarado', estr.total_declarado, 'brl') }}{% else %}<span class="num">— (não há linha de total)</span>{% endif %}</dd>
+        <dt>Diferença</dt><dd><span class="num">{{ estr.conciliacao.diferenca|brl if estr.conciliacao.diferenca is not none else '—' }}</span></dd>
+      </dl>
+      <p class="small">{{ estr.conciliacao.detalhe }}</p>
+      {% if estr.subtotais_conferidos %}
+      <p class="small muted">{{ estr.subtotais_conferidos|selectattr('ok')|list|length }} de {{ estr.subtotais_conferidos|length }} subtotais do arquivo conferem com a soma dos itens do bloco.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-top"><div><div class="card-title">O que cada coluna significa</div>
+      <div class="card-sub">Mapeamento automático pelo rótulo e pelo conteúdo. Se algo estiver errado, corrija com <span class="mono">--mapa campo=coluna</span> e gere de novo.</div></div></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Col.</th><th>Rótulo no arquivo</th><th>Entendido como</th><th>Exemplo</th><th>Por quê</th></tr></thead>
+      <tbody>
+      {% for c in mapa %}
+        <tr><td class="mono">{{ c.letra }}</td><td>{{ c.rotulo }}</td>
+          <td>{% if c.usada %}<span class="badge b-gold">{{ c.campo }}</span>{% else %}<span class="muted">{{ c.campo }}</span>{% endif %}</td>
+          <td class="small">{{ c.exemplo }}</td><td class="tiny">{{ c.motivo }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="grid2">
+    {% if estr.grupos|length > 1 %}
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px">Grupos do orçamento</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Grupo</th><th class="num">Linhas</th><th class="num">Orçado</th><th class="num">%</th></tr></thead>
+        <tbody>{% for g in estr.grupos %}<tr><td>{{ g.nome }}</td><td class="num">{{ g.n }}</td><td class="num">{{ g.total|brl }}</td><td class="num">{{ pct(g.pct) }}</td></tr>{% endfor %}</tbody>
+        <tfoot><tr><td>Total</td><td class="num">{{ estr.itens|length }}</td><td class="num">{{ v('total_orcado', estr.total_itens) }}</td><td class="num">100,0%</td></tr></tfoot>
+      </table></div>
+    </div>
+    {% endif %}
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px">Linhas fora da soma (subtotais e totais)</div>
+      {% if estr.agregadoras %}
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Linha</th><th>Descrição</th><th>Tipo</th><th class="num">Valor</th></tr></thead>
+        <tbody>{% for x in estr.agregadoras %}<tr><td class="mono">{{ x.linha_origem }}</td><td>{{ x.descricao }}<span class="sub">{{ x.motivo_tipo }}</span></td><td>{{ x.tipo }}</td><td class="num">{{ x.orcado|brl }}</td></tr>{% endfor %}</tbody>
+      </table></div>
+      {% else %}<p class="small muted">Nenhuma linha de subtotal ou total foi encontrada: todas as linhas com valor foram tratadas como itens.</p>{% endif %}
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title" style="margin-bottom:10px">Qualidade dos dados</div>
+    {% if estr.qualidade or a.leitura.avisos %}
+    <ul class="clean small">
+      {% for q in estr.qualidade %}<li><span class="badge {{ {'alta':'b-bad','media':'b-wait'}.get(q.severidade, 'b-none') }}">{{ NOME_SEV.get(q.severidade, q.severidade) }}</span> {{ q.mensagem }}{% if q.linhas %} <span class="tiny">Linhas: {{ q.linhas[:12]|join(', ') }}{% if q.linhas|length > 12 %}…{% endif %}</span>{% endif %}</li>{% endfor %}
+      {% for av in a.leitura.avisos %}<li><span class="badge b-none">leitura</span> {{ av }}</li>{% endfor %}
+    </ul>
+    {% else %}<p class="small muted">Nenhum problema de qualidade encontrado: valores numéricos, sem negativos, subtotais conferidos e todas as linhas classificadas.</p>{% endif %}
+  </div>
+</section>
+
+{# ============================================================ 03 RAIO-X #}
+<section id="raio-x" class="secao">
+  <div class="sec-head"><span class="sec-n">03</span><div><h2>Raio-X do orçamento</h2>
+    <p class="sec-sub">Para onde vai o dinheiro: categorias, concentração, perfil de custo e distribuição no ano.</p></div></div>
+  <ul class="clean" style="margin-bottom:16px">{% for i in a.insights %}<li>{{ i }}</li>{% endfor %}</ul>
+
+  <div class="card">
+    <div class="card-top"><div><div class="card-title">Composição por categoria de custo</div>
+      <div class="card-sub">Classificação automática pela descrição de cada linha (taxonomia do bot).</div></div></div>
+    <div class="bars" style="margin-bottom:16px">
+    {% for d in a.por_categoria[:14] %}
+      <div class="bar-row"><div class="bl" title="{{ d.nome }}">{{ d.nome }}</div>
+        <div class="bar-track"><div class="bar" style="width:{{ [100 * d.orcado / max_cat, 0]|max|round(2) }}%"></div></div>
+        <div class="bv">{{ d.orcado|brl_curto }}<small>{{ pct(d.pct) }}</small></div></div>
+    {% endfor %}
+    </div>
+    {% if a.por_categoria|length > 14 %}<p class="tiny">+ {{ a.por_categoria|length - 14 }} categorias menores na tabela abaixo.</p>{% endif %}
+    {% set tem_ant = estr.tem.ano_anterior %}{% set tem_real = estr.tem.realizado %}
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Categoria</th><th class="num">Linhas</th><th class="num">Orçado</th><th class="num">%</th>
+        {% if tem_ant %}<th class="num">Ano anterior</th><th class="num" title="Só linhas com valor no ano anterior">Var. a/a*</th>{% endif %}
+        {% if tem_real %}<th class="num">Realizado</th>{% endif %}<th>Perfil</th></tr></thead>
+      <tbody>
+      {% for d in a.por_categoria %}
+        <tr><td>{{ d.nome }}{% if d.protegida %} <span class="badge b-none">protegida</span>{% endif %}{% if d.discricionaria %} <span class="badge b-gold">discricionária</span>{% endif %}</td>
+          <td class="num">{{ d.n }}</td><td class="num">{{ v('cat:' ~ d.id ~ ':orcado', d.orcado) }}</td><td class="num">{{ pct(d.pct) }}</td>
+          {% if tem_ant %}<td class="num">{{ d.ano_anterior|brl if d.tem_ant else '—' }}</td><td class="num">{{ pct(d.var_aa, 1, True) if d.var_aa is not none else '—' }}</td>{% endif %}
+          {% if tem_real %}<td class="num">{{ d.realizado|brl if d.tem_real else '—' }}</td>{% endif %}
+          <td class="small">{{ {'fixo':'Fixo','variavel':'Variável','semi':'Semivariável'}[d.comportamento] }}</td></tr>
+      {% endfor %}
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="num">{{ estr.itens|length }}</td><td class="num">{{ v('total_orcado', estr.total_itens) }}</td><td class="num">100,0%</td>
+        {% if tem_ant %}<td class="num">{{ estr.total_ano_anterior|brl }}</td><td class="num">{% set comp = a.por_categoria|sum(attribute='orcado_comp') %}{{ pct(comp / estr.total_ano_anterior - 1, 1, True) if estr.total_ano_anterior else '—' }}</td>{% endif %}{% if tem_real %}<td class="num">{{ estr.total_realizado|brl }}</td>{% endif %}<td></td></tr></tfoot>
+    </table></div>
+    {% if tem_ant %}<p class="tiny" style="margin:8px 0 0">* Variação calculada só entre linhas que têm valor no ano anterior (comparação de mesma base); linhas novas ficam de fora e aparecem nos riscos.</p>{% endif %}
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Concentração (curva de Pareto)</div>
+      <div class="card-sub" style="margin-bottom:8px">Linhas ordenadas da maior para a menor; a curva mostra o % acumulado do valor.</div>
+      {{ graf_pareto }}
+    </div>
+    <div class="card">
+      <div class="card-title">Perfil de custo</div>
+      <div class="card-sub" style="margin-bottom:12px">Fixo não cai com volume; variável acompanha a produção; discricionário depende de decisão de gestão.</div>
+      <div class="mixbar" role="img" aria-label="Fixo {{ pct(a.mix.fixo.pct) }}, semivariável {{ pct(a.mix.semi.pct) }}, variável {{ pct(a.mix.variavel.pct) }}">
+        <div style="width:{{ 100 * a.mix.fixo.pct }}%;background:var(--gold-deep)" title="Fixo {{ pct(a.mix.fixo.pct) }}"></div>
+        <div style="width:{{ 100 * a.mix.semi.pct }}%;background:var(--gold)" title="Semivariável {{ pct(a.mix.semi.pct) }}"></div>
+        <div style="width:{{ 100 * a.mix.variavel.pct }}%;background:var(--gold-dim)" title="Variável {{ pct(a.mix.variavel.pct) }}"></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--gold-deep)"></i>Fixo {{ pct(a.mix.fixo.pct) }}</span><span><i style="background:var(--gold)"></i>Semivariável {{ pct(a.mix.semi.pct) }}</span><span><i style="background:var(--gold-dim)"></i>Variável {{ pct(a.mix.variavel.pct) }}</span></div>
+      <dl class="ficha" style="margin-top:16px">
+        <dt>Discricionário</dt><dd>{{ a.mix.discricionario.valor|brl }} ({{ pct(a.mix.discricionario.pct) }}) — viagens, eventos, consultorias, treinamentos, genéricas</dd>
+        <dt>Protegido</dt><dd>{{ a.mix.protegido.valor|brl }} ({{ pct(a.mix.protegido.pct) }}) — tributos, SSMA, financeiras, depreciação: sem corte automático</dd>
+      </dl>
+    </div>
+  </div>
+
+  {% if graf_mensal %}
+  <div class="card" style="margin-top:16px">
+    <div class="card-top"><div><div class="card-title">Distribuição no ano</div>
+      <div class="card-sub">{% if estr.meses_realizado %}Orçado (bege) × realizado (dourado) por mês.{% else %}Orçado por mês — picos e dezembro inflado aparecem aqui.{% endif %}</div></div>
+      {% if estr.meses_realizado %}<div class="legend" style="margin:0"><span><i style="background:var(--plan)"></i>Orçado</span><span><i style="background:var(--gold)"></i>Realizado</span></div>{% endif %}</div>
+    {{ graf_mensal }}
+    <details><summary>Ver tabela mensal</summary>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Mês</th><th class="num">Orçado</th>{% if estr.meses_realizado %}<th class="num">Realizado</th><th class="num">Execução</th>{% endif %}</tr></thead>
+        <tbody>{% for m, val in estr.meses.items() %}<tr><td>{{ MESES_NOME[m-1] }}</td><td class="num">{{ val|brl }}</td>{% if estr.meses_realizado %}{% set r = estr.meses_realizado.get(m) %}<td class="num">{{ r|brl if r is not none else '—' }}</td><td class="num">{{ pct(r / val) if r is not none and val else '—' }}</td>{% endif %}</tr>{% endfor %}</tbody>
+        <tfoot><tr><td>Total</td><td class="num">{{ estr.meses.values()|sum|brl }}</td>{% if estr.meses_realizado %}<td class="num">{{ estr.meses_realizado.values()|sum|brl }}</td><td></td>{% endif %}</tr></tfoot>
+      </table></div>
+    </details>
+  </div>
+  {% endif %}
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title" style="margin-bottom:10px">As 15 maiores linhas</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Linha</th><th>Descrição</th><th>Categoria</th>{% if estr.tem.centro_custo %}<th>Centro de custo</th>{% endif %}<th class="num">Orçado</th><th class="num">% do total</th></tr></thead>
+      <tbody>{% for x in top_linhas %}<tr><td class="mono">{{ x.linha_origem }}</td><td>{{ x.rotulo }}</td><td class="small">{{ cat_nome.get(x.categoria, x.categoria) }}</td>{% if estr.tem.centro_custo %}<td class="small">{{ x.centro_custo or '—' }}</td>{% endif %}<td class="num">{{ x.orcado|brl }}</td><td class="num">{{ pct(x.orcado / estr.total_itens) if estr.total_itens else '—' }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+  </div>
+</section>
+
+{# ============================================================ 04 OPORTUNIDADES #}
+<section id="oportunidades" class="secao">
+  <div class="sec-head"><span class="sec-n">04</span><div><h2>Oportunidades de redução</h2>
+    <p class="sec-sub">Cada oportunidade traz a evidência (linhas da planilha), a faixa de economia, a ação recomendada e o indicador para acompanhar. Valores isolados: duas oportunidades na mesma linha não se somam — os cenários (seção 05) já descontam essa sobreposição.</p></div></div>
+
+  {% if ops %}
+  <div class="toolbar no-print" id="filtros-op">
+    <span class="lbl-mono">Filtrar</span>
+    <div class="chips">
+      <button class="chip active" data-filtro="todas">Todas ({{ ops|length }})</button>
+      <button class="chip" data-filtro="qw">Ganhos rápidos</button>
+      <button class="chip" data-filtro="alta">Alta confiança</button>
+      <button class="chip" data-filtro="curto">0–3 meses</button>
+      <button class="chip" data-filtro="medio">3–6 meses</button>
+      <button class="chip" data-filtro="longo">6–12 meses</button>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-bottom:18px"><table id="tab-ops">
+    <thead><tr><th>#</th><th>Oportunidade</th><th>Categoria</th><th class="num">Base afetada</th><th class="num">Conservador</th><th class="num">Base</th><th class="num">Agressivo</th><th>Confiança</th><th>Esforço</th><th>Prazo</th></tr></thead>
+    <tbody>
+    {% for d in ops %}{% set o = d.o %}
+      <tr data-op="{{ o.id }}" data-conf="{{ o.confianca }}" data-esf="{{ o.esforco }}" data-hor="{{ o.horizonte }}">
+        <td class="mono"><a href="#{{ o.id }}">{{ o.id }}</a></td><td>{{ o.titulo }}</td><td class="small">{{ d.cat_nome }}</td>
+        <td class="num">{{ o.base_afetada|brl }}</td><td class="num">{{ d.eco.conservador|brl }}</td><td class="num"><strong>{{ d.eco.base|brl }}</strong></td><td class="num">{{ d.eco.agressivo|brl }}</td>
+        <td><span class="badge {{ {'alta':'b-ok','media':'b-gold','baixa':'b-none'}[o.confianca] }}">{{ NOME_CONF[o.confianca] }}</span></td>
+        <td class="small">{{ NOME_ESFORCO[o.esforco] }}</td><td class="small nw">{{ NOME_HORIZONTE[o.horizonte] }}</td></tr>
+    {% endfor %}
+    </tbody>
+    <tfoot><tr><td></td><td colspan="3">Soma simples (contém sobreposição — use os cenários)</td>
+      <td class="num">{{ ops|sum(attribute='eco.conservador')|brl }}</td><td class="num">{{ ops|sum(attribute='eco.base')|brl }}</td><td class="num">{{ ops|sum(attribute='eco.agressivo')|brl }}</td><td colspan="3"></td></tr></tfoot>
+  </table></div>
+
+  <div class="ops">
+  {% for d in ops %}{% set o = d.o %}
+    <article class="card op-card" id="{{ o.id }}" data-conf="{{ o.confianca }}" data-esf="{{ o.esforco }}" data-hor="{{ o.horizonte }}">
+      <div class="op-id">{{ o.id }} · {{ d.cat_nome }}</div>
+      <div class="card-title" style="margin-top:2px">{{ o.titulo }}</div>
+      <div class="op-meta">
+        <span class="badge {{ {'alta':'b-ok','media':'b-gold','baixa':'b-none'}[o.confianca] }}">Confiança {{ NOME_CONF[o.confianca]|lower }}</span>
+        <span class="badge b-none">Esforço {{ NOME_ESFORCO[o.esforco]|lower }}</span>
+        <span class="badge b-none">{{ NOME_HORIZONTE[o.horizonte] }}</span>
+      </div>
+      <div class="highlight"><span class="l">Economia · cenário base</span><span class="v">{{ v('op:' ~ o.id ~ ':base', d.eco.base) }}</span></div>
+      <div class="op-faixa">
+        <div><span class="l">Conservador</span>{{ v('op:' ~ o.id ~ ':conservador', d.eco.conservador) }}</div>
+        <div><span class="l">Agressivo</span>{{ v('op:' ~ o.id ~ ':agressivo', d.eco.agressivo) }}</div>
+        <div><span class="l">Base afetada</span><span class="num">{{ o.base_afetada|brl }}</span></div>
+      </div>
+      <p>{{ o.racional }}</p>
+      <p class="acao"><strong>Ação recomendada:</strong> {{ o.acao }}</p>
+      {% if o.indicador %}<p class="tiny"><strong>Indicador:</strong> {{ o.indicador }}</p>{% endif %}
+      <details><summary>Evidências e linhas afetadas ({{ d.det|length }})</summary>
+        <ul class="clean small" style="margin-top:6px">{% for e in o.evidencias %}<li>{{ e }}</li>{% endfor %}</ul>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>Linha</th><th>Descrição</th><th class="num">Valor</th><th class="num">Redução base</th><th class="num">Economia</th></tr></thead>
+          <tbody>{% for r in d.det[:40] %}<tr><td class="mono">{{ r.linha.linha_origem }}</td><td>{{ r.linha.rotulo }}{% if r.nota %}<span class="sub">{{ r.nota }}</span>{% endif %}</td><td class="num">{{ r.base|brl }}</td><td class="num">{{ pct(r.taxa) }}</td><td class="num">{{ r.eco|brl }}</td></tr>{% endfor %}</tbody>
+          {% if d.det|length > 40 %}<tfoot><tr><td></td><td colspan="4">+ {{ d.det|length - 40 }} linhas (ver orçamento adaptado por linha)</td></tr></tfoot>{% endif %}
+        </table></div>
+        <p class="tiny" style="margin-top:6px">Detector: {{ o.detector }}</p>
+      </details>
+    </article>
+  {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty"><h3>Nenhuma oportunidade acima do corte de materialidade</h3><p>Os detectores rodaram (ver seção 09), mas nenhuma economia passou de {{ pct(a.premissas.economia_minima_pct_total, 2) }} do total. Ajuste as premissas ou inclua mais dados (realizado, ano anterior, fornecedor).</p></div>
+  {% endif %}
+</section>
+
+{# ============================================================ 05 CENÁRIOS #}
+<section id="cenarios" class="secao">
+  <div class="sec-head"><span class="sec-n">05</span><div><h2>Cenários — o orçamento adaptado</h2>
+    <p class="sec-sub">Várias versões do mesmo orçamento, cada uma com uma lógica de corte. Todas aplicam as reduções linha a linha e descontam a sobreposição entre alavancas.</p></div></div>
+
+  <div class="tbl-wrap" style="margin-bottom:18px"><table>
+    <thead><tr><th>Cenário</th><th>Como foi montado</th><th class="num">Oportunidades</th><th class="num">Orçamento adaptado</th><th class="num">Redução</th><th class="num">%</th></tr></thead>
+    <tbody>
+    {% for c in cenarios %}
+      <tr class="{{ 'destaque' if c.recomendado else '' }}"><td><strong>{{ c.nome }}</strong>{% if c.recomendado %} <span class="badge b-ok">recomendado</span>{% endif %}</td>
+        <td class="small">{{ c.descricao }}{% if c.nota %}<span class="sub">{{ c.nota }}</span>{% endif %}</td>
+        <td class="num">{{ c.selecao|length if c.selecao or c.id not in ('linear','realinhamento') else '—' }}</td>
+        <td class="num">{{ v('cenario:' ~ c.id ~ ':adaptado', c.total_adaptado) }}</td>
+        <td class="num">{{ v('cenario:' ~ c.id ~ ':economia', c.economia) }}</td>
+        <td class="num">{{ v('cenario:' ~ c.id ~ ':pct', c.economia_pct, 'pct') }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+
+  <div class="toolbar no-print">
+    <span class="lbl-mono">Detalhar cenário</span>
+    <div class="chips" id="chips-cen">{% for c in cenarios %}<button class="chip {{ 'active' if c.id == 'base' else '' }}" data-cen="{{ c.id }}">{{ c.nome }}</button>{% endfor %}</div>
+  </div>
+  {% for c in cenarios %}
+  <div class="cen-det card {{ 'on' if c.id == 'base' else '' }}" data-cen="{{ c.id }}">
+    <div class="card-title" style="margin-bottom:4px">{{ c.nome }}</div>
+    <p class="small muted">{{ c.descricao }}</p>
+    {% if c.nota %}<p class="nota {{ 'info' if c.id not in ('linear',) else '' }}">{{ c.nota }}</p>{% endif %}
+    <div class="mini-kpis">
+      <div><span class="l">Orçado original</span><span class="num">{{ c.total_original|brl_curto }}</span></div>
+      <div><span class="l">Adaptado</span><span class="num">{{ c.total_adaptado|brl_curto }}</span></div>
+      <div><span class="l">Redução</span><span class="num v pos">{{ c.economia|brl_curto }}</span></div>
+      <div><span class="l">% do total</span><span class="num">{{ pct(c.economia_pct) }}</span></div>
+    </div>
+    {% set cats = a.por_categoria|sort(attribute='economia.' ~ c.id, reverse=True) %}
+    {% set maxe = [cats[0].economia[c.id] if cats else 0, 1]|max %}
+    <div class="stack">
+      <div>
+        <h4 style="margin-top:0">De onde vem a redução</h4>
+        <div class="bars">
+        {% for d in cats[:10] if d.economia[c.id] > 0.5 %}
+          <div class="bar-row"><div class="bl" title="{{ d.nome }}">{{ d.nome }}</div>
+            <div class="bar-track"><div class="bar ok" style="width:{{ [100 * d.economia[c.id] / maxe, 0]|max|round(2) }}%"></div></div>
+            <div class="bv">{{ d.economia[c.id]|brl_curto }}</div></div>
+        {% else %}<p class="small muted">Este cenário não reduz nenhuma categoria.</p>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Categoria</th><th class="num">Orçado</th><th class="num">Adaptado</th><th class="num">Redução</th><th class="num">%</th></tr></thead>
+        <tbody>{% for d in cats %}<tr><td class="small">{{ d.nome }}</td><td class="num">{{ d.orcado|brl }}</td><td class="num">{{ d.adaptado[c.id]|brl }}</td><td class="num">{{ d.economia[c.id]|brl }}</td><td class="num">{{ pct(d.economia[c.id] / d.orcado) if d.orcado else '—' }}</td></tr>{% endfor %}</tbody>
+        <tfoot><tr><td>Total</td><td class="num">{{ c.total_original|brl }}</td><td class="num">{{ v('cenario:' ~ c.id ~ ':adaptado', c.total_adaptado) }}</td><td class="num">{{ v('cenario:' ~ c.id ~ ':economia', c.economia) }}</td><td class="num">{{ pct(c.economia_pct) }}</td></tr></tfoot>
+      </table></div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-top"><div><div class="card-title">Orçamento adaptado por linha</div>
+      <div class="card-sub">Cada linha da planilha com o valor em cada cenário. A mesma tabela está no Excel gerado junto com este relatório.</div></div>
+      <input type="search" id="busca-linhas" class="no-print" placeholder="Buscar linha, código, categoria…" aria-label="Buscar linha"></div>
+    <div class="tbl-wrap alto"><table id="tab-linhas">
+      <thead><tr><th>Linha</th><th>Descrição</th><th>Categoria</th><th class="num">Orçado</th>{% for cid in CENARIOS_TABELA %}<th class="num">{{ cen[cid].nome.split(' (')[0] }}</th>{% endfor %}</tr></thead>
+      <tbody>
+      {% for r in linhas_tab %}{% set x = r.x %}
+        <tr><td class="mono">{{ x.linha_origem }}</td><td>{{ x.rotulo }}{% if x.centro_custo %}<span class="sub">{{ x.centro_custo }}</span>{% endif %}</td><td class="small">{{ r.cat }}</td>
+          <td class="num">{{ x.orcado|brl }}</td>{% for cid in CENARIOS_TABELA %}{% set val = r.v[cid] %}<td class="num{{ ' v pos' if val < x.orcado - 0.004 else '' }}">{{ val|brl }}</td>{% endfor %}</tr>
+      {% endfor %}
+      </tbody>
+      <tfoot><tr><td></td><td colspan="2">Total ({{ linhas_tab|length }} linhas)</td><td class="num">{{ v('total_orcado', estr.total_itens) }}</td>{% for cid in CENARIOS_TABELA %}<td class="num">{{ v('cenario:' ~ cid ~ ':adaptado', cen[cid].total_adaptado) }}</td>{% endfor %}</tr></tfoot>
+    </table></div>
+  </div>
+</section>
+
+{# ============================================================ 06 SIMULADOR #}
+<section id="simulador" class="secao">
+  <div class="sec-head"><span class="sec-n">06</span><div><h2>Simulador — monte o seu cenário</h2>
+    <p class="sec-sub">Ligue, desligue ou mude a intensidade de cada oportunidade e veja o orçamento recalculado na hora, com a mesma regra de sobreposição dos cenários. A simulação começa no cenário base.</p></div></div>
+
+  <div class="toolbar no-print">
+    <div class="field"><label for="sim-partir">Partir do cenário</label>
+      <select id="sim-partir">{% for c in cenarios if c.selecao or c.id in ('conservador','base','agressivo','quick_wins','base_zero','meta') %}<option value="{{ c.id }}" {{ 'selected' if c.id == 'base' else '' }}>{{ c.nome }}</option>{% endfor %}</select></div>
+    <button class="btn" id="sim-aplicar">Aplicar</button>
+    <button class="btn gold" id="btn-salvar">💾 Salvar base</button>
+    <label class="btn filebtn">📂 Carregar base<input type="file" accept=".json" id="btn-carregar"></label>
+    <button class="btn" id="btn-csv">⭳ Exportar CSV</button>
+    <button class="btn" onclick="window.print()">Imprimir</button>
+    <span class="loadmsg" id="msg" role="status"></span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Orçado original</div><div class="v"><span class="num">{{ estr.total_itens|brl }}</span></div><div class="f">{{ estr.itens|length }} linhas</div></div>
+    <div class="kpi"><div class="l">Economia simulada</div><div class="v pos"><span class="num" id="sim-eco" data-check="sim:economia" data-valor="{{ '%.2f'|format(base.economia) }}" data-fmt="brl">{{ base.economia|brl }}</span></div><div class="f">sem dupla contagem</div></div>
+    <div class="kpi"><div class="l">Orçamento simulado</div><div class="v"><span class="num" id="sim-total">{{ base.total_adaptado|brl }}</span></div><div class="f">após as ações escolhidas</div></div>
+    <div class="kpi"><div class="l">Redução</div><div class="v"><span class="num" id="sim-pct">{{ pct(base.economia_pct) }}</span></div><div class="f" id="sim-n">{{ ops|length }} de {{ ops|length }} oportunidades ligadas</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="tbl-wrap alto"><table id="tab-sim">
+      <thead><tr><th>#</th><th>Oportunidade</th><th>Intensidade</th><th class="num">Economia isolada</th></tr></thead>
+      <tbody>
+      {% for d in ops %}{% set o = d.o %}
+        <tr><td class="mono">{{ o.id }}</td><td class="small">{{ o.titulo }}</td>
+          <td><select class="sim-sel" data-op="{{ o.id }}" aria-label="Intensidade de {{ o.id }}"><option value="fora">Desligada</option><option value="conservador">Conservador</option><option value="base" selected>Base</option><option value="agressivo">Agressivo</option></select></td>
+          <td class="num" id="sim-op-{{ o.id }}">{{ d.eco.base|brl }}</td></tr>
+      {% else %}<tr><td colspan="4" class="muted">Sem oportunidades para simular.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table></div>
+    <div class="tbl-wrap alto"><table>
+      <thead><tr><th>Categoria</th><th class="num">Orçado</th><th class="num">Simulado</th><th class="num">Redução</th></tr></thead>
+      <tbody id="sim-cat">
+      {% for d in a.por_categoria %}<tr><td class="small">{{ d.nome }}</td><td class="num">{{ d.orcado|brl }}</td><td class="num">{{ d.adaptado.base|brl }}</td><td class="num">{{ d.economia.base|brl }}</td></tr>{% endfor %}
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="num">{{ estr.total_itens|brl }}</td><td class="num" id="sim-cat-tot">{{ base.total_adaptado|brl }}</td><td class="num" id="sim-cat-eco">{{ base.economia|brl }}</td></tr></tfoot>
+    </table></div>
+  </div>
+</section>
+
+{# ============================================================ 07 PLANO #}
+<section id="plano" class="secao">
+  <div class="sec-head"><span class="sec-n">07</span><div><h2>Plano de ação</h2>
+    <p class="sec-sub">As oportunidades organizadas por prazo. Preencha responsável, data e status aqui mesmo — fica salvo neste navegador e no arquivo de base (💾 Salvar base, na seção 06).</p></div></div>
+  <div class="plano-cols">
+  {% for h, titulo in [('curto','Ganhos rápidos · 0–3 meses'),('medio','Médio prazo · 3–6 meses'),('longo','Estruturais · 6–12 meses')] %}
+    <div class="plano-col"><h3>{{ titulo }}</h3>
+      <div class="tiny">{{ plural(plano[h]|length, 'ação', 'ações') }} · {{ plano[h]|sum(attribute='eco.base')|brl_curto }} no cenário base (soma simples)</div>
+      {% if plano[h] %}<ol>{% for d in plano[h] %}<li><a href="#{{ d.o.id }}">{{ d.o.id }}</a> {{ d.o.titulo }}</li>{% endfor %}</ol>{% else %}<p class="tiny" style="margin-top:8px">Nenhuma ação neste prazo.</p>{% endif %}
+    </div>
+  {% endfor %}
+  </div>
+  {% if ops %}
+  <div class="tbl-wrap"><table id="tab-plano">
+    <thead><tr><th>#</th><th>Ação</th><th>Prazo</th><th class="num">Economia base</th><th>Responsável</th><th>Data-alvo</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for d in ops %}{% set o = d.o %}
+      <tr><td class="mono">{{ o.id }}</td><td><strong>{{ o.titulo }}</strong><span class="sub">{{ o.indicador }}</span></td><td class="small nw">{{ NOME_HORIZONTE[o.horizonte] }}</td><td class="num">{{ d.eco.base|brl }}</td>
+        <td><input type="text" class="plano-in" data-op="{{ o.id }}" data-campo="resp" placeholder="—" aria-label="Responsável por {{ o.id }}"></td>
+        <td><input type="date" class="plano-in" data-op="{{ o.id }}" data-campo="data" aria-label="Data-alvo de {{ o.id }}"></td>
+        <td><select class="plano-in" data-op="{{ o.id }}" data-campo="status" aria-label="Status de {{ o.id }}"><option value="">Não iniciada</option><option value="andamento">Em andamento</option><option value="concluida">Concluída</option><option value="descartada">Descartada</option></select></td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% endif %}
+</section>
+
+{# ============================================================ 08 RISCOS #}
+<section id="riscos" class="secao">
+  <div class="sec-head"><span class="sec-n">08</span><div><h2>Riscos e pontos de atenção</h2>
+    <p class="sec-sub">O que pode tirar o orçamento do lugar ou invalidar parte das economias.</p></div></div>
+  <div class="stack">
+  {% for al in a.alertas %}
+    <div class="card alerta {{ al.severidade }}"><div class="card-top"><div class="card-title">{{ al.titulo }}</div>
+      <span class="badge {{ {'alta':'b-bad','media':'b-wait'}.get(al.severidade,'b-none') }}">{{ NOME_SEV.get(al.severidade, al.severidade) }}</span></div>
+      <p class="small">{{ al.detalhe }}</p></div>
+  {% endfor %}
+  {% for q in estr.qualidade if q.severidade in ('alta','media') %}
+    <div class="card alerta {{ q.severidade }}"><div class="card-top"><div class="card-title">Qualidade dos dados: {{ q.tipo|replace('_',' ') }}</div>
+      <span class="badge {{ 'b-bad' if q.severidade == 'alta' else 'b-wait' }}">{{ NOME_SEV.get(q.severidade, q.severidade) }}</span></div>
+      <p class="small">{{ q.mensagem }}</p></div>
+  {% endfor %}
+    <div class="card alerta baixa"><div class="card-title" style="margin-bottom:6px">Categorias protegidas</div>
+      <p class="small">{{ a.mix.protegido.valor|brl }} ({{ pct(a.mix.protegido.pct) }}) estão em tributos, SSMA, despesas financeiras e depreciação. O bot não propõe corte automático nelas: são obrigações legais, de segurança ou sem efeito caixa.</p></div>
+    <div class="card alerta baixa"><div class="card-title" style="margin-bottom:6px">Economia estimada não é economia realizada</div>
+      <p class="small">As faixas são referências para priorizar e negociar. Cada oportunidade precisa de dono, plano e acompanhamento do indicador — e a economia só existe quando aparece no realizado.</p></div>
+  </div>
+</section>
+
+{# ============================================================ 09 PREMISSAS #}
+<section id="premissas" class="secao">
+  <div class="sec-head"><span class="sec-n">09</span><div><h2>Premissas e metodologia</h2>
+    <p class="sec-sub">De onde vem cada número. Todas as premissas podem ser alteradas num arquivo JSON (<span class="mono">--config</span>).</p></div></div>
+  <div class="grid2">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Premissa</th><th class="num">Valor</th></tr></thead>
+      <tbody>{% for p in premissas_tab %}<tr><td class="small">{{ p.descricao }}<span class="sub mono">{{ p.chave }}</span></td><td class="num">{{ p.valor }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:8px">Como o bot calcula</div>
+      <ul class="clean small">
+        <li><strong>Itens × subtotais:</strong> linhas de total/subtotal (por descrição, hierarquia de código ou soma do bloco) ficam fora da soma para não dobrar valores.</li>
+        <li><strong>Economia por oportunidade:</strong> taxa × valor de cada linha afetada, em três níveis (conservador, base, agressivo).</li>
+        <li><strong>Sobreposição:</strong> numa mesma linha, as reduções se combinam como 1 − Π(1 − rᵢ), com teto de {{ pct(a.premissas.teto_reducao_linha, 0) }} por linha (exceto duplicidade, que pode zerar a linha).</li>
+        <li><strong>Prioridade:</strong> economia base × peso da confiança (alta 1,0 · média 0,8 · baixa 0,6) ÷ peso do esforço (baixo 1,0 · médio 1,3 · alto 1,7).</li>
+        <li><strong>Materialidade:</strong> oportunidades com economia base abaixo de {{ pct(a.premissas.economia_minima_pct_total, 2) }} do total não entram{% if a.descartadas %} ({{ plural(a.descartadas|length, 'descartada', 'descartadas') }}: {{ a.descartadas|map(attribute='titulo')|join('; ') }}){% endif %}.</li>
+        <li><strong>Fatos × estimativas:</strong> totais, variações e preços vêm do arquivo. As faixas por categoria são referências de programas de redução de custos — ajuste-as à sua realidade.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="card-title" style="margin-bottom:10px">Faixas de redução por categoria presentes neste orçamento</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Categoria</th><th class="num">Orçado</th><th class="num">Conserv.</th><th class="num">Base</th><th class="num">Agress.</th><th>Alavanca</th></tr></thead>
+      <tbody>{% for f in faixas %}<tr><td class="small">{{ f.c.nome }}{% if f.c.protegida %} <span class="badge b-none">protegida</span>{% endif %}</td><td class="num">{{ f.orcado|brl }}</td><td class="num">{{ pct(f.c.faixa[0], 0) }}</td><td class="num">{{ pct(f.c.faixa[1], 0) }}</td><td class="num">{{ pct(f.c.faixa[2], 0) }}</td><td class="small">{{ f.c.alavanca }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+  </div>
+  <div class="card">
+    <div class="card-title" style="margin-bottom:10px">Detectores executados</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Detector</th><th>Origem</th><th>Status</th><th class="num">Oportunidades</th><th>Observação</th></tr></thead>
+      <tbody>{% for d in a.detectores %}<tr><td><strong>{{ d.nome }}</strong><span class="sub">{{ d.descricao }}</span></td><td class="small mono">{{ d.origem }}</td>
+        <td><span class="badge {{ {'executado':'b-ok','pulado':'b-none','erro':'b-bad'}[d.status] }}">{{ d.status }}</span></td>
+        <td class="num">{{ d.n_validas if d.n_validas is defined else d.n }}</td><td class="small">{{ d.motivo or '—' }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    {% if a.skills %}
+    <h4>Skills carregadas</h4>
+    <ul class="clean small">{% for s in a.skills %}<li><span class="mono">{{ s.nome }}</span> ({{ s.tipo }}) — <span class="badge {{ 'b-ok' if s.status == 'carregada' else 'b-bad' }}">{{ s.status }}</span> {{ s.erro }}</li>{% endfor %}</ul>
+    {% endif %}
+  </div>
+</section>
+
+{# ============================================================ 10 REVISÕES #}
+<section id="revisoes" class="secao">
+  <div class="sec-head"><span class="sec-n">10</span><div><h2>Controle de revisões</h2>
+    <p class="sec-sub">Histórico de emissões deste relatório e o checklist da revisão automática, feita lendo o arquivo HTML final (números exibidos × dados, seções, formatação, renderização no navegador).</p></div></div>
+
+  <div class="status-banner"><span class="badge {{ status.classe }}" style="font-size:12px">{{ status.rotulo }}</span>
+    <div><div class="big">Rev. {{ '%02d'|format(revisao.rev) }} — {{ revisao.data|data_br }}</div>
+      <div class="small muted">{% if verificacoes %}{{ plural(status.ok, 'verificação ok', 'verificações ok') }} · {{ plural(status.alertas, 'alerta', 'alertas') }} · {{ plural(status.falhas, 'falha', 'falhas') }}{% else %}Revisão em andamento{% endif %}</div></div></div>
+
+  <div class="tbl-wrap" style="margin-bottom:16px"><table>
+    <thead><tr><th>Rev.</th><th>Data</th><th>Descrição</th><th>Alterações em relação à anterior</th><th>Elaborado</th><th>Verificado</th></tr></thead>
+    <tbody>
+    {% for h in historico|reverse %}
+      <tr class="{{ 'destaque' if h.rev == revisao.rev else '' }}"><td class="mono">{{ '%02d'|format(h.rev) }}</td><td class="small">{{ h.data|data_br }}</td><td class="small">{{ h.descricao }}</td>
+        <td class="small"><ul class="clean">{% for alt in h.alteracoes %}<li>{{ alt }}</li>{% endfor %}</ul></td>
+        <td class="small">{{ h.elaborado }}</td><td class="small">{% if h.rev == revisao.rev %}<span class="badge {{ status.classe }}">{{ status.rotulo }}</span>{% else %}{{ h.verificado }}{% endif %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+
+  {% if verificacoes %}
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Grupo</th><th>Verificação</th><th>Resultado</th><th>Detalhe</th></tr></thead>
+    <tbody>
+    {% for chk in verificacoes %}
+      <tr><td class="small muted">{{ chk.grupo }}</td><td class="small"><strong>{{ chk.nome }}</strong></td>
+        <td><span class="badge {{ {'ok':'b-ok','alerta':'b-wait','falha':'b-bad','pulado':'b-none'}[chk.status] }}">{{ {'ok':'ok','alerta':'alerta','falha':'falha','pulado':'pulado'}[chk.status] }}</span></td>
+        <td class="small">{{ chk.detalhe }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}
+  <div class="empty">A revisão automática ainda não rodou sobre este arquivo.</div>
+  {% endif %}
+</section>
+</main>
+
+<footer class="credit">
+  Fonte: {{ meta.arquivo }} · aba {{ meta.aba }} · data-base {{ meta.data_base }} · gerado em {{ meta.gerado_em|data_br }} por {{ meta.bot }} v{{ meta.versao_bot }} · Rev. {{ '%02d'|format(revisao.rev) }}.<br>
+  Economias são estimativas a partir das premissas da seção 09 — não substituem a validação com os responsáveis de cada conta.<br>
+  O que você preencher no simulador e no plano de ação fica salvo neste navegador. Use <strong>💾 Salvar base</strong> para gerar uma cópia em arquivo — limpar o cache ou abrir em outra máquina não recupera o preenchimento.
+</footer>
+
+<script type="application/json" id="DATA">{{ dados_json }}</script>
+<script>
+(function(){
+'use strict';
+var RAW = JSON.parse(document.getElementById('DATA').textContent);
+var KEY = {{ storage_key|tojson }} + '_' + String(RAW.meta.hash || '').slice(0, 8);
+var NIV = ['conservador', 'base', 'agressivo'];
+
+function fmt(v, casas){ return Number(v).toLocaleString('pt-BR', {minimumFractionDigits: casas, maximumFractionDigits: casas}); }
+function BRL(v){ return (v == null || isNaN(v)) ? '—' : (v < -0.004 ? '-' : '') + 'R$ ' + fmt(Math.abs(v), 2); }
+function PCT(v){ return (v == null || !isFinite(v)) ? '—' : fmt(v * 100, 1) + '%'; }
+function qsa(s, el){ return Array.prototype.slice.call((el || document).querySelectorAll(s)); }
+function msg(t, cls){ var e = document.getElementById('msg'); if(!e) return; e.textContent = t; e.className = 'loadmsg ' + (cls || '');
+  setTimeout(function(){ e.textContent = ''; e.className = 'loadmsg'; }, 6000); }
+function sem_acento(s){ return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+function nomeArquivo(){ return ('simulacao-' + (RAW.meta.slug || 'orcamento') + '-rev' + String(RAW.revisao.rev).padStart(2, '0')); }
+
+/* ---------- estado (rascunho no navegador; fonte da verdade = arquivo .json) ---------- */
+function padraoSim(){ var s = {}; RAW.oportunidades.forEach(function(o){ s[o.id] = 'base'; }); return s; }
+function restore(){ try { var s = JSON.parse(localStorage.getItem(KEY)); return (s && typeof s === 'object') ? s : null; } catch(e){ return null; } }
+function persist(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+var state = restore() || {simulacao: padraoSim(), plano: {}};
+state.simulacao = state.simulacao || padraoSim();
+state.plano = state.plano || {};
+
+/* ---------- motor do simulador (mesma regra do Python) ---------- */
+var LINHAS = RAW.linhas, TETO = RAW.premissas.teto_reducao_linha;
+var ORIG = LINHAS.reduce(function(s, l){ return s + l.orc; }, 0);
+function calcular(sel){
+  var fator = {}, total = {};
+  LINHAS.forEach(function(l){ fator[l.id] = 1; total[l.id] = false; });
+  RAW.oportunidades.forEach(function(o){
+    var k = NIV.indexOf(sel[o.id]) + 1; if(k < 1) return;
+    o.l.forEach(function(r){ if(!(r[0] in fator)) return; fator[r[0]] *= (1 - r[k]); if(o.pt) total[r[0]] = true; });
+  });
+  var val = {}, soma = 0;
+  LINHAS.forEach(function(l){
+    var red = Math.min(1 - fator[l.id], total[l.id] ? 1 : TETO);
+    var v = l.orc > 0 ? Math.round(l.orc * (1 - red) * 100) / 100 : l.orc;
+    val[l.id] = v; soma += v;
+  });
+  return {val: val, soma: soma};
+}
+function renderSim(){
+  var r = calcular(state.simulacao), eco = ORIG - r.soma;
+  var e = document.getElementById('sim-eco');
+  if(e){ e.textContent = BRL(eco); e.setAttribute('data-valor', eco.toFixed(2)); }
+  var t = document.getElementById('sim-total'); if(t) t.textContent = BRL(r.soma);
+  var p = document.getElementById('sim-pct'); if(p) p.textContent = PCT(ORIG ? eco / ORIG : 0);
+  var ligadas = RAW.oportunidades.filter(function(o){ return NIV.indexOf(state.simulacao[o.id]) >= 0; }).length;
+  var n = document.getElementById('sim-n'); if(n) n.textContent = ligadas + ' de ' + RAW.oportunidades.length + ' oportunidades ligadas';
+  RAW.oportunidades.forEach(function(o){
+    var c = document.getElementById('sim-op-' + o.id); var nv = state.simulacao[o.id];
+    if(c) c.textContent = NIV.indexOf(nv) >= 0 ? BRL(o.eco[nv]) : '—';
+  });
+  var cats = {};
+  LINHAS.forEach(function(l){ var c = cats[l.cat] || (cats[l.cat] = {o: 0, s: 0}); c.o += l.orc; c.s += r.val[l.id]; });
+  var ids = Object.keys(cats).sort(function(a, b){ return cats[b].o - cats[a].o; });
+  var tb = document.getElementById('sim-cat');
+  if(tb){ tb.innerHTML = ids.map(function(id){ var c = cats[id];
+    return '<tr><td class="small">' + (RAW.categorias[id] || id).replace(/</g, '&lt;') + '</td><td class="num">' + BRL(c.o) +
+      '</td><td class="num">' + BRL(c.s) + '</td><td class="num">' + BRL(c.o - c.s) + '</td></tr>'; }).join(''); }
+  var ct = document.getElementById('sim-cat-tot'); if(ct) ct.textContent = BRL(r.soma);
+  var ce = document.getElementById('sim-cat-eco'); if(ce) ce.textContent = BRL(eco);
+  return r;
+}
+function syncSelects(){
+  qsa('.sim-sel').forEach(function(s){ s.value = state.simulacao[s.getAttribute('data-op')] || 'fora'; });
+  qsa('.plano-in').forEach(function(i){ var d = state.plano[i.getAttribute('data-op')] || {}; i.value = d[i.getAttribute('data-campo')] || ''; });
+}
+qsa('.sim-sel').forEach(function(s){ s.addEventListener('change', function(){
+  state.simulacao[s.getAttribute('data-op')] = s.value; persist(); renderSim(); }); });
+qsa('.plano-in').forEach(function(i){ i.addEventListener('input', function(){
+  var op = i.getAttribute('data-op'); state.plano[op] = state.plano[op] || {};
+  state.plano[op][i.getAttribute('data-campo')] = i.value; persist(); }); });
+var btnAp = document.getElementById('sim-aplicar');
+if(btnAp) btnAp.addEventListener('click', function(){
+  var id = document.getElementById('sim-partir').value;
+  var c = RAW.cenarios.filter(function(x){ return x.id === id; })[0]; if(!c) return;
+  var s = {}; RAW.oportunidades.forEach(function(o){ s[o.id] = c.selecao[o.id] || 'fora'; });
+  state.simulacao = s; persist(); syncSelects(); renderSim(); msg('Simulação reiniciada a partir de: ' + c.nome, 'ok');
+});
+
+/* ---------- salvar / carregar / exportar ---------- */
+function baixar(nome, conteudo, tipo){
+  var blob = new Blob([conteudo], {type: tipo}); var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = nome; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 60000);
+}
+var bs = document.getElementById('btn-salvar');
+if(bs) bs.addEventListener('click', function(){
+  var payload = {meta: RAW.meta, revisao: RAW.revisao.rev, salvo_em: new Date().toISOString(), state: state};
+  baixar(nomeArquivo() + '.json', JSON.stringify(payload, null, 2), 'application/json'); msg('Base salva em ' + nomeArquivo() + '.json', 'ok');
+});
+var bc = document.getElementById('btn-carregar');
+if(bc) bc.addEventListener('change', function(){
+  var f = bc.files[0]; if(!f) return; var r = new FileReader();
+  r.onload = function(ev){ try {
+      var p = JSON.parse(ev.target.result); var s = p.state || p;
+      state = {simulacao: s.simulacao || padraoSim(), plano: s.plano || {}};
+      persist(); syncSelects(); renderSim(); msg('Base carregada: ' + f.name, 'ok');
+    } catch(err){ msg('Arquivo inválido: ' + err.message, 'err'); } bc.value = ''; };
+  r.readAsText(f);
+});
+var bcsv = document.getElementById('btn-csv');
+if(bcsv) bcsv.addEventListener('click', function(){
+  var r = calcular(state.simulacao);
+  var linhas = ['Linha;Código;Descrição;Categoria;Centro de custo;Orçado;Simulado;Redução'];
+  function cel(s){ s = String(s == null ? '' : s); return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+  function dec(v){ return v.toFixed(2).replace('.', ','); }
+  LINHAS.forEach(function(l){ linhas.push([l.lo, cel(l.cod), cel(l.desc), cel(RAW.categorias[l.cat] || l.cat), cel(l.cc), dec(l.orc), dec(r.val[l.id]), dec(l.orc - r.val[l.id])].join(';')); });
+  baixar(nomeArquivo() + '.csv', '﻿' + linhas.join('\n'), 'text/csv;charset=utf-8'); msg('CSV exportado', 'ok');
+});
+
+/* ---------- filtros e navegação ---------- */
+qsa('#filtros-op .chip').forEach(function(ch){ ch.addEventListener('click', function(){
+  qsa('#filtros-op .chip').forEach(function(x){ x.classList.remove('active'); }); ch.classList.add('active');
+  var f = ch.getAttribute('data-filtro');
+  qsa('.op-card, #tab-ops tbody tr').forEach(function(el){
+    var conf = el.getAttribute('data-conf'), esf = el.getAttribute('data-esf'), hor = el.getAttribute('data-hor');
+    var ok = f === 'todas' || (f === 'qw' && esf === 'baixo' && hor === 'curto') || (f === 'alta' && conf === 'alta') || f === hor;
+    el.classList.toggle('hidden', !ok);
+  });
+}); });
+qsa('#chips-cen .chip').forEach(function(ch){ ch.addEventListener('click', function(){
+  qsa('#chips-cen .chip').forEach(function(x){ x.classList.remove('active'); }); ch.classList.add('active');
+  var id = ch.getAttribute('data-cen');
+  qsa('.cen-det').forEach(function(d){ d.classList.toggle('on', d.getAttribute('data-cen') === id); });
+}); });
+var busca = document.getElementById('busca-linhas');
+if(busca) busca.addEventListener('input', function(){
+  var q = sem_acento(busca.value.trim());
+  qsa('#tab-linhas tbody tr').forEach(function(tr){ tr.classList.toggle('hidden', q && sem_acento(tr.textContent).indexOf(q) < 0); });
+});
+
+syncSelects();
+renderSim();
+document.documentElement.setAttribute('data-pronto', '1');
+})();
+</script>
+</body>
+</html>

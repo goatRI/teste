@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+# relatórios gerados a partir de orçamentos reais ficam fora do git por padrão
+relatorios/
+# planilhas de trabalho (os exemplos fictícios em exemplos/ são versionados)
+*.xlsx
+*.xls
+*.csv
+!exemplos/*.xlsx
+!exemplos/*.csv
+!exemplos/relatorio-demo/*.xlsx

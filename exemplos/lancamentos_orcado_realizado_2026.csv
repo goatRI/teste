@@ -1,0 +1,361 @@
+﻿Competência;Conta;Descrição;Centro de Custo;Cenário;Valor
+2026-01;5.1.01;Treinamentos operacionais;Operação;Orçado;30.120,01
+2026-02;5.1.01;Treinamentos operacionais;Operação;Orçado;29.697,23
+2026-03;5.1.01;Treinamentos operacionais;Operação;Orçado;30.919,46
+2026-04;5.1.01;Treinamentos operacionais;Operação;Orçado;29.505,58
+2026-05;5.1.01;Treinamentos operacionais;Operação;Orçado;30.638,27
+2026-06;5.1.01;Treinamentos operacionais;Operação;Orçado;30.222,31
+2026-07;5.1.01;Treinamentos operacionais;Operação;Orçado;29.470,30
+2026-08;5.1.01;Treinamentos operacionais;Operação;Orçado;30.568,74
+2026-09;5.1.01;Treinamentos operacionais;Operação;Orçado;29.420,19
+2026-10;5.1.01;Treinamentos operacionais;Operação;Orçado;30.388,40
+2026-11;5.1.01;Treinamentos operacionais;Operação;Orçado;29.499,28
+2026-12;5.1.01;Treinamentos operacionais;Operação;Orçado;29.550,23
+2026-01;5.1.01;Treinamentos operacionais;Operação;Realizado;12.574,02
+2026-02;5.1.01;Treinamentos operacionais;Operação;Realizado;12.798,98
+2026-03;5.1.01;Treinamentos operacionais;Operação;Realizado;12.595,34
+2026-04;5.1.01;Treinamentos operacionais;Operação;Realizado;12.117,97
+2026-05;5.1.01;Treinamentos operacionais;Operação;Realizado;12.999,26
+2026-06;5.1.01;Treinamentos operacionais;Operação;Realizado;13.148,01
+2026-01;5.1.02;Consultoria de processos;Operação;Orçado;50.546,42
+2026-02;5.1.02;Consultoria de processos;Operação;Orçado;49.821,32
+2026-03;5.1.02;Consultoria de processos;Operação;Orçado;52.150,59
+2026-04;5.1.02;Consultoria de processos;Operação;Orçado;48.414,30
+2026-05;5.1.02;Consultoria de processos;Operação;Orçado;51.677,21
+2026-06;5.1.02;Consultoria de processos;Operação;Orçado;49.391,01
+2026-07;5.1.02;Consultoria de processos;Operação;Orçado;48.806,84
+2026-08;5.1.02;Consultoria de processos;Operação;Orçado;48.700,49
+2026-09;5.1.02;Consultoria de processos;Operação;Orçado;49.466,86
+2026-10;5.1.02;Consultoria de processos;Operação;Orçado;51.507,04
+2026-11;5.1.02;Consultoria de processos;Operação;Orçado;48.953,42
+2026-12;5.1.02;Consultoria de processos;Operação;Orçado;50.564,50
+2026-01;5.1.02;Consultoria de processos;Operação;Realizado;25.554,07
+2026-02;5.1.02;Consultoria de processos;Operação;Realizado;24.656,37
+2026-03;5.1.02;Consultoria de processos;Operação;Realizado;26.174,89
+2026-04;5.1.02;Consultoria de processos;Operação;Realizado;23.360,46
+2026-05;5.1.02;Consultoria de processos;Operação;Realizado;24.928,26
+2026-06;5.1.02;Consultoria de processos;Operação;Realizado;24.114,59
+2026-01;5.1.03;Manutenção predial;Facilities;Orçado;35.393,54
+2026-02;5.1.03;Manutenção predial;Facilities;Orçado;34.687,90
+2026-03;5.1.03;Manutenção predial;Facilities;Orçado;34.371,26
+2026-04;5.1.03;Manutenção predial;Facilities;Orçado;35.128,83
+2026-05;5.1.03;Manutenção predial;Facilities;Orçado;34.759,34
+2026-06;5.1.03;Manutenção predial;Facilities;Orçado;34.331,12
+2026-07;5.1.03;Manutenção predial;Facilities;Orçado;35.711,68
+2026-08;5.1.03;Manutenção predial;Facilities;Orçado;35.445,44
+2026-09;5.1.03;Manutenção predial;Facilities;Orçado;34.175,73
+2026-10;5.1.03;Manutenção predial;Facilities;Orçado;35.097,74
+2026-11;5.1.03;Manutenção predial;Facilities;Orçado;34.960,34
+2026-12;5.1.03;Manutenção predial;Facilities;Orçado;35.937,08
+2026-01;5.1.03;Manutenção predial;Facilities;Realizado;21.986,36
+2026-02;5.1.03;Manutenção predial;Facilities;Realizado;20.800,65
+2026-03;5.1.03;Manutenção predial;Facilities;Realizado;21.771,87
+2026-04;5.1.03;Manutenção predial;Facilities;Realizado;20.773,84
+2026-05;5.1.03;Manutenção predial;Facilities;Realizado;21.064,31
+2026-06;5.1.03;Manutenção predial;Facilities;Realizado;21.372,79
+2026-01;5.1.04;Energia elétrica;Operação;Orçado;194.171,62
+2026-02;5.1.04;Energia elétrica;Operação;Orçado;199.556,06
+2026-03;5.1.04;Energia elétrica;Operação;Orçado;192.369,59
+2026-04;5.1.04;Energia elétrica;Operação;Orçado;202.420,27
+2026-05;5.1.04;Energia elétrica;Operação;Orçado;203.959,88
+2026-06;5.1.04;Energia elétrica;Operação;Orçado;200.899,27
+2026-07;5.1.04;Energia elétrica;Operação;Orçado;205.732,02
+2026-08;5.1.04;Energia elétrica;Operação;Orçado;196.756,36
+2026-09;5.1.04;Energia elétrica;Operação;Orçado;202.852,96
+2026-10;5.1.04;Energia elétrica;Operação;Orçado;201.240,31
+2026-11;5.1.04;Energia elétrica;Operação;Orçado;201.009,03
+2026-12;5.1.04;Energia elétrica;Operação;Orçado;199.032,63
+2026-01;5.1.04;Energia elétrica;Operação;Realizado;235.354,05
+2026-02;5.1.04;Energia elétrica;Operação;Realizado;243.853,09
+2026-03;5.1.04;Energia elétrica;Operação;Realizado;226.525,75
+2026-04;5.1.04;Energia elétrica;Operação;Realizado;241.992,62
+2026-05;5.1.04;Energia elétrica;Operação;Realizado;232.213,87
+2026-06;5.1.04;Energia elétrica;Operação;Realizado;240.882,41
+2026-01;5.1.05;Frete de produtos acabados;Logística;Orçado;152.377,31
+2026-02;5.1.05;Frete de produtos acabados;Logística;Orçado;156.545,65
+2026-03;5.1.05;Frete de produtos acabados;Logística;Orçado;154.483,32
+2026-04;5.1.05;Frete de produtos acabados;Logística;Orçado;148.009,38
+2026-05;5.1.05;Frete de produtos acabados;Logística;Orçado;149.228,62
+2026-06;5.1.05;Frete de produtos acabados;Logística;Orçado;152.636,64
+2026-07;5.1.05;Frete de produtos acabados;Logística;Orçado;144.852,31
+2026-08;5.1.05;Frete de produtos acabados;Logística;Orçado;150.143,14
+2026-09;5.1.05;Frete de produtos acabados;Logística;Orçado;146.605,17
+2026-10;5.1.05;Frete de produtos acabados;Logística;Orçado;145.991,28
+2026-11;5.1.05;Frete de produtos acabados;Logística;Orçado;145.290,77
+2026-12;5.1.05;Frete de produtos acabados;Logística;Orçado;153.836,41
+2026-01;5.1.05;Frete de produtos acabados;Logística;Realizado;170.037,73
+2026-02;5.1.05;Frete de produtos acabados;Logística;Realizado;176.392,60
+2026-03;5.1.05;Frete de produtos acabados;Logística;Realizado;176.105,94
+2026-04;5.1.05;Frete de produtos acabados;Logística;Realizado;175.268,39
+2026-05;5.1.05;Frete de produtos acabados;Logística;Realizado;165.854,70
+2026-06;5.1.05;Frete de produtos acabados;Logística;Realizado;174.818,60
+2026-01;5.1.06;Materiais de consumo;Operação;Orçado;79.179,12
+2026-02;5.1.06;Materiais de consumo;Operação;Orçado;81.286,10
+2026-03;5.1.06;Materiais de consumo;Operação;Orçado;80.881,64
+2026-04;5.1.06;Materiais de consumo;Operação;Orçado;81.163,70
+2026-05;5.1.06;Materiais de consumo;Operação;Orçado;77.469,16
+2026-06;5.1.06;Materiais de consumo;Operação;Orçado;78.332,76
+2026-07;5.1.06;Materiais de consumo;Operação;Orçado;77.976,12
+2026-08;5.1.06;Materiais de consumo;Operação;Orçado;81.291,20
+2026-09;5.1.06;Materiais de consumo;Operação;Orçado;81.755,18
+2026-10;5.1.06;Materiais de consumo;Operação;Orçado;76.664,71
+2026-11;5.1.06;Materiais de consumo;Operação;Orçado;76.824,32
+2026-12;5.1.06;Materiais de consumo;Operação;Orçado;77.175,99
+2026-01;5.1.06;Materiais de consumo;Operação;Realizado;75.165,28
+2026-02;5.1.06;Materiais de consumo;Operação;Realizado;78.752,66
+2026-03;5.1.06;Materiais de consumo;Operação;Realizado;79.014,57
+2026-04;5.1.06;Materiais de consumo;Operação;Realizado;77.234,50
+2026-05;5.1.06;Materiais de consumo;Operação;Realizado;72.163,89
+2026-06;5.1.06;Materiais de consumo;Operação;Realizado;75.490,08
+2026-01;5.1.07;Manutenção de máquinas;Manutenção;Orçado;110.007,34
+2026-02;5.1.07;Manutenção de máquinas;Manutenção;Orçado;111.760,16
+2026-03;5.1.07;Manutenção de máquinas;Manutenção;Orçado;115.199,82
+2026-04;5.1.07;Manutenção de máquinas;Manutenção;Orçado;112.864,32
+2026-05;5.1.07;Manutenção de máquinas;Manutenção;Orçado;111.307,92
+2026-06;5.1.07;Manutenção de máquinas;Manutenção;Orçado;112.215,97
+2026-07;5.1.07;Manutenção de máquinas;Manutenção;Orçado;112.737,20
+2026-08;5.1.07;Manutenção de máquinas;Manutenção;Orçado;107.203,53
+2026-09;5.1.07;Manutenção de máquinas;Manutenção;Orçado;114.723,44
+2026-10;5.1.07;Manutenção de máquinas;Manutenção;Orçado;113.660,08
+2026-11;5.1.07;Manutenção de máquinas;Manutenção;Orçado;114.500,92
+2026-12;5.1.07;Manutenção de máquinas;Manutenção;Orçado;113.819,30
+2026-01;5.1.07;Manutenção de máquinas;Manutenção;Realizado;112.332,02
+2026-02;5.1.07;Manutenção de máquinas;Manutenção;Realizado;114.182,66
+2026-03;5.1.07;Manutenção de máquinas;Manutenção;Realizado;114.892,40
+2026-04;5.1.07;Manutenção de máquinas;Manutenção;Realizado;117.499,15
+2026-05;5.1.07;Manutenção de máquinas;Manutenção;Realizado;110.632,19
+2026-06;5.1.07;Manutenção de máquinas;Manutenção;Realizado;111.581,89
+2026-01;5.1.08;Peças de reposição;Manutenção;Orçado;73.065,24
+2026-02;5.1.08;Peças de reposição;Manutenção;Orçado;72.787,19
+2026-03;5.1.08;Peças de reposição;Manutenção;Orçado;73.850,97
+2026-04;5.1.08;Peças de reposição;Manutenção;Orçado;72.130,51
+2026-05;5.1.08;Peças de reposição;Manutenção;Orçado;71.817,26
+2026-06;5.1.08;Peças de reposição;Manutenção;Orçado;72.721,13
+2026-07;5.1.08;Peças de reposição;Manutenção;Orçado;72.423,09
+2026-08;5.1.08;Peças de reposição;Manutenção;Orçado;73.991,94
+2026-09;5.1.08;Peças de reposição;Manutenção;Orçado;71.968,48
+2026-10;5.1.08;Peças de reposição;Manutenção;Orçado;77.048,44
+2026-11;5.1.08;Peças de reposição;Manutenção;Orçado;75.490,85
+2026-12;5.1.08;Peças de reposição;Manutenção;Orçado;72.704,90
+2026-01;5.1.08;Peças de reposição;Manutenção;Realizado;68.036,28
+2026-02;5.1.08;Peças de reposição;Manutenção;Realizado;68.303,62
+2026-03;5.1.08;Peças de reposição;Manutenção;Realizado;69.396,02
+2026-04;5.1.08;Peças de reposição;Manutenção;Realizado;66.456,44
+2026-05;5.1.08;Peças de reposição;Manutenção;Realizado;70.130,93
+2026-06;5.1.08;Peças de reposição;Manutenção;Realizado;71.810,36
+2026-01;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;26.043,53
+2026-02;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;26.080,81
+2026-03;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.249,43
+2026-04;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.283,49
+2026-05;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.785,82
+2026-06;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.623,12
+2026-07;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;26.801,62
+2026-08;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.407,27
+2026-09;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.118,25
+2026-10;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;27.056,77
+2026-11;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;26.173,62
+2026-12;5.1.09;Serviços de limpeza industrial;Facilities;Orçado;25.376,27
+2026-01;5.1.09;Serviços de limpeza industrial;Facilities;Realizado;26.133,48
+2026-02;5.1.09;Serviços de limpeza industrial;Facilities;Realizado;25.094,00
+2026-03;5.1.09;Serviços de limpeza industrial;Facilities;Realizado;25.306,21
+2026-04;5.1.09;Serviços de limpeza industrial;Facilities;Realizado;26.251,34
+2026-05;5.1.09;Serviços de limpeza industrial;Facilities;Realizado;26.535,31
+2026-06;5.1.09;Serviços de limpeza industrial;Facilities;Realizado;26.025,29
+2026-01;5.1.10;Viagens a clientes;Comercial;Orçado;19.502,55
+2026-02;5.1.10;Viagens a clientes;Comercial;Orçado;19.670,49
+2026-03;5.1.10;Viagens a clientes;Comercial;Orçado;19.352,92
+2026-04;5.1.10;Viagens a clientes;Comercial;Orçado;20.315,07
+2026-05;5.1.10;Viagens a clientes;Comercial;Orçado;19.934,36
+2026-06;5.1.10;Viagens a clientes;Comercial;Orçado;20.326,39
+2026-07;5.1.10;Viagens a clientes;Comercial;Orçado;19.611,59
+2026-08;5.1.10;Viagens a clientes;Comercial;Orçado;19.441,99
+2026-09;5.1.10;Viagens a clientes;Comercial;Orçado;20.378,01
+2026-10;5.1.10;Viagens a clientes;Comercial;Orçado;20.653,85
+2026-11;5.1.10;Viagens a clientes;Comercial;Orçado;20.443,41
+2026-12;5.1.10;Viagens a clientes;Comercial;Orçado;20.369,37
+2026-01;5.1.10;Viagens a clientes;Comercial;Realizado;10.999,57
+2026-02;5.1.10;Viagens a clientes;Comercial;Realizado;11.026,38
+2026-03;5.1.10;Viagens a clientes;Comercial;Realizado;10.411,42
+2026-04;5.1.10;Viagens a clientes;Comercial;Realizado;11.189,06
+2026-05;5.1.10;Viagens a clientes;Comercial;Realizado;10.837,21
+2026-06;5.1.10;Viagens a clientes;Comercial;Realizado;10.758,25
+2026-01;5.1.11;Feiras e eventos;Comercial;Orçado;23.999,11
+2026-02;5.1.11;Feiras e eventos;Comercial;Orçado;24.500,88
+2026-03;5.1.11;Feiras e eventos;Comercial;Orçado;24.460,49
+2026-04;5.1.11;Feiras e eventos;Comercial;Orçado;25.325,14
+2026-05;5.1.11;Feiras e eventos;Comercial;Orçado;25.851,88
+2026-06;5.1.11;Feiras e eventos;Comercial;Orçado;24.835,71
+2026-07;5.1.11;Feiras e eventos;Comercial;Orçado;25.812,99
+2026-08;5.1.11;Feiras e eventos;Comercial;Orçado;25.914,78
+2026-09;5.1.11;Feiras e eventos;Comercial;Orçado;25.848,86
+2026-10;5.1.11;Feiras e eventos;Comercial;Orçado;24.670,92
+2026-11;5.1.11;Feiras e eventos;Comercial;Orçado;24.383,25
+2026-12;5.1.11;Feiras e eventos;Comercial;Orçado;24.395,99
+2026-01;5.1.11;Feiras e eventos;Comercial;Realizado;4.683,36
+2026-02;5.1.11;Feiras e eventos;Comercial;Realizado;4.784,29
+2026-03;5.1.11;Feiras e eventos;Comercial;Realizado;4.940,65
+2026-04;5.1.11;Feiras e eventos;Comercial;Realizado;5.227,23
+2026-05;5.1.11;Feiras e eventos;Comercial;Realizado;5.311,19
+2026-06;5.1.11;Feiras e eventos;Comercial;Realizado;4.958,99
+2026-01;5.1.12;Software de gestão;TI;Orçado;35.142,69
+2026-02;5.1.12;Software de gestão;TI;Orçado;35.550,04
+2026-03;5.1.12;Software de gestão;TI;Orçado;33.564,56
+2026-04;5.1.12;Software de gestão;TI;Orçado;35.163,82
+2026-05;5.1.12;Software de gestão;TI;Orçado;35.855,93
+2026-06;5.1.12;Software de gestão;TI;Orçado;35.501,88
+2026-07;5.1.12;Software de gestão;TI;Orçado;35.412,55
+2026-08;5.1.12;Software de gestão;TI;Orçado;34.656,79
+2026-09;5.1.12;Software de gestão;TI;Orçado;33.824,92
+2026-10;5.1.12;Software de gestão;TI;Orçado;35.520,86
+2026-11;5.1.12;Software de gestão;TI;Orçado;34.252,63
+2026-12;5.1.12;Software de gestão;TI;Orçado;35.553,33
+2026-01;5.1.12;Software de gestão;TI;Realizado;36.468,71
+2026-02;5.1.12;Software de gestão;TI;Realizado;35.253,80
+2026-03;5.1.12;Software de gestão;TI;Realizado;33.299,77
+2026-04;5.1.12;Software de gestão;TI;Realizado;36.420,71
+2026-05;5.1.12;Software de gestão;TI;Realizado;36.500,76
+2026-06;5.1.12;Software de gestão;TI;Realizado;34.564,64
+2026-01;5.1.13;Telefonia e dados;TI;Orçado;10.535,10
+2026-02;5.1.13;Telefonia e dados;TI;Orçado;10.556,04
+2026-03;5.1.13;Telefonia e dados;TI;Orçado;11.210,80
+2026-04;5.1.13;Telefonia e dados;TI;Orçado;11.125,37
+2026-05;5.1.13;Telefonia e dados;TI;Orçado;10.551,72
+2026-06;5.1.13;Telefonia e dados;TI;Orçado;11.142,75
+2026-07;5.1.13;Telefonia e dados;TI;Orçado;11.276,35
+2026-08;5.1.13;Telefonia e dados;TI;Orçado;10.995,72
+2026-09;5.1.13;Telefonia e dados;TI;Orçado;10.729,14
+2026-10;5.1.13;Telefonia e dados;TI;Orçado;10.901,37
+2026-11;5.1.13;Telefonia e dados;TI;Orçado;10.538,52
+2026-12;5.1.13;Telefonia e dados;TI;Orçado;10.437,12
+2026-01;5.1.13;Telefonia e dados;TI;Realizado;10.713,33
+2026-02;5.1.13;Telefonia e dados;TI;Realizado;10.468,79
+2026-03;5.1.13;Telefonia e dados;TI;Realizado;11.009,95
+2026-04;5.1.13;Telefonia e dados;TI;Realizado;11.281,08
+2026-05;5.1.13;Telefonia e dados;TI;Realizado;10.285,93
+2026-06;5.1.13;Telefonia e dados;TI;Realizado;11.244,65
+2026-01;5.1.14;Locação de empilhadeiras;Logística;Orçado;46.502,66
+2026-02;5.1.14;Locação de empilhadeiras;Logística;Orçado;44.272,50
+2026-03;5.1.14;Locação de empilhadeiras;Logística;Orçado;44.420,39
+2026-04;5.1.14;Locação de empilhadeiras;Logística;Orçado;44.569,52
+2026-05;5.1.14;Locação de empilhadeiras;Logística;Orçado;44.379,44
+2026-06;5.1.14;Locação de empilhadeiras;Logística;Orçado;45.633,53
+2026-07;5.1.14;Locação de empilhadeiras;Logística;Orçado;44.447,70
+2026-08;5.1.14;Locação de empilhadeiras;Logística;Orçado;45.026,52
+2026-09;5.1.14;Locação de empilhadeiras;Logística;Orçado;43.982,56
+2026-10;5.1.14;Locação de empilhadeiras;Logística;Orçado;46.806,71
+2026-11;5.1.14;Locação de empilhadeiras;Logística;Orçado;44.790,02
+2026-12;5.1.14;Locação de empilhadeiras;Logística;Orçado;45.168,45
+2026-01;5.1.14;Locação de empilhadeiras;Logística;Realizado;46.812,74
+2026-02;5.1.14;Locação de empilhadeiras;Logística;Realizado;45.704,44
+2026-03;5.1.14;Locação de empilhadeiras;Logística;Realizado;44.138,33
+2026-04;5.1.14;Locação de empilhadeiras;Logística;Realizado;46.058,93
+2026-05;5.1.14;Locação de empilhadeiras;Logística;Realizado;44.385,29
+2026-06;5.1.14;Locação de empilhadeiras;Logística;Realizado;45.749,71
+2026-01;5.1.15;Seguro de carga;Logística;Orçado;13.471,53
+2026-02;5.1.15;Seguro de carga;Logística;Orçado;12.928,52
+2026-03;5.1.15;Seguro de carga;Logística;Orçado;13.381,84
+2026-04;5.1.15;Seguro de carga;Logística;Orçado;13.105,37
+2026-05;5.1.15;Seguro de carga;Logística;Orçado;12.912,63
+2026-06;5.1.15;Seguro de carga;Logística;Orçado;13.768,06
+2026-07;5.1.15;Seguro de carga;Logística;Orçado;13.093,79
+2026-08;5.1.15;Seguro de carga;Logística;Orçado;13.417,73
+2026-09;5.1.15;Seguro de carga;Logística;Orçado;13.688,49
+2026-10;5.1.15;Seguro de carga;Logística;Orçado;13.507,00
+2026-11;5.1.15;Seguro de carga;Logística;Orçado;13.259,06
+2026-12;5.1.15;Seguro de carga;Logística;Orçado;13.465,98
+2026-01;5.1.15;Seguro de carga;Logística;Realizado;13.801,91
+2026-02;5.1.15;Seguro de carga;Logística;Realizado;13.486,99
+2026-03;5.1.15;Seguro de carga;Logística;Realizado;13.219,36
+2026-04;5.1.15;Seguro de carga;Logística;Realizado;13.431,96
+2026-05;5.1.15;Seguro de carga;Logística;Realizado;12.905,88
+2026-06;5.1.15;Seguro de carga;Logística;Realizado;13.792,79
+2026-01;5.1.16;Alimentação de funcionários;RH;Orçado;65.859,88
+2026-02;5.1.16;Alimentação de funcionários;RH;Orçado;64.495,75
+2026-03;5.1.16;Alimentação de funcionários;RH;Orçado;64.774,28
+2026-04;5.1.16;Alimentação de funcionários;RH;Orçado;65.796,62
+2026-05;5.1.16;Alimentação de funcionários;RH;Orçado;66.582,96
+2026-06;5.1.16;Alimentação de funcionários;RH;Orçado;64.163,34
+2026-07;5.1.16;Alimentação de funcionários;RH;Orçado;65.036,22
+2026-08;5.1.16;Alimentação de funcionários;RH;Orçado;64.484,61
+2026-09;5.1.16;Alimentação de funcionários;RH;Orçado;64.518,69
+2026-10;5.1.16;Alimentação de funcionários;RH;Orçado;65.449,79
+2026-11;5.1.16;Alimentação de funcionários;RH;Orçado;64.210,25
+2026-12;5.1.16;Alimentação de funcionários;RH;Orçado;64.627,61
+2026-01;5.1.16;Alimentação de funcionários;RH;Realizado;66.401,60
+2026-02;5.1.16;Alimentação de funcionários;RH;Realizado;67.441,48
+2026-03;5.1.16;Alimentação de funcionários;RH;Realizado;66.464,68
+2026-04;5.1.16;Alimentação de funcionários;RH;Realizado;68.456,39
+2026-05;5.1.16;Alimentação de funcionários;RH;Realizado;69.627,68
+2026-06;5.1.16;Alimentação de funcionários;RH;Realizado;63.558,60
+2026-01;5.1.17;Transporte de funcionários;RH;Orçado;54.504,36
+2026-02;5.1.17;Transporte de funcionários;RH;Orçado;56.169,72
+2026-03;5.1.17;Transporte de funcionários;RH;Orçado;55.721,58
+2026-04;5.1.17;Transporte de funcionários;RH;Orçado;52.671,36
+2026-05;5.1.17;Transporte de funcionários;RH;Orçado;52.604,04
+2026-06;5.1.17;Transporte de funcionários;RH;Orçado;53.994,90
+2026-07;5.1.17;Transporte de funcionários;RH;Orçado;52.391,07
+2026-08;5.1.17;Transporte de funcionários;RH;Orçado;53.120,54
+2026-09;5.1.17;Transporte de funcionários;RH;Orçado;52.393,56
+2026-10;5.1.17;Transporte de funcionários;RH;Orçado;54.981,54
+2026-11;5.1.17;Transporte de funcionários;RH;Orçado;55.478,28
+2026-12;5.1.17;Transporte de funcionários;RH;Orçado;55.969,05
+2026-01;5.1.17;Transporte de funcionários;RH;Realizado;52.467,65
+2026-02;5.1.17;Transporte de funcionários;RH;Realizado;56.569,46
+2026-03;5.1.17;Transporte de funcionários;RH;Realizado;55.871,60
+2026-04;5.1.17;Transporte de funcionários;RH;Realizado;50.655,31
+2026-05;5.1.17;Transporte de funcionários;RH;Realizado;53.672,97
+2026-06;5.1.17;Transporte de funcionários;RH;Realizado;55.454,36
+2026-01;5.1.18;Vigilância patrimonial;Facilities;Orçado;31.804,45
+2026-02;5.1.18;Vigilância patrimonial;Facilities;Orçado;33.712,04
+2026-03;5.1.18;Vigilância patrimonial;Facilities;Orçado;32.269,48
+2026-04;5.1.18;Vigilância patrimonial;Facilities;Orçado;32.501,13
+2026-05;5.1.18;Vigilância patrimonial;Facilities;Orçado;33.809,30
+2026-06;5.1.18;Vigilância patrimonial;Facilities;Orçado;33.399,56
+2026-07;5.1.18;Vigilância patrimonial;Facilities;Orçado;31.653,17
+2026-08;5.1.18;Vigilância patrimonial;Facilities;Orçado;32.356,06
+2026-09;5.1.18;Vigilância patrimonial;Facilities;Orçado;32.574,91
+2026-10;5.1.18;Vigilância patrimonial;Facilities;Orçado;32.115,55
+2026-11;5.1.18;Vigilância patrimonial;Facilities;Orçado;31.742,39
+2026-12;5.1.18;Vigilância patrimonial;Facilities;Orçado;32.061,96
+2026-01;5.1.18;Vigilância patrimonial;Facilities;Realizado;32.369,68
+2026-02;5.1.18;Vigilância patrimonial;Facilities;Realizado;32.416,10
+2026-03;5.1.18;Vigilância patrimonial;Facilities;Realizado;32.409,01
+2026-04;5.1.18;Vigilância patrimonial;Facilities;Realizado;32.346,32
+2026-05;5.1.18;Vigilância patrimonial;Facilities;Realizado;32.505,84
+2026-06;5.1.18;Vigilância patrimonial;Facilities;Realizado;32.949,33
+2026-01;5.1.19;Outras despesas operacionais;Operação;Orçado;37.989,66
+2026-02;5.1.19;Outras despesas operacionais;Operação;Orçado;37.653,63
+2026-03;5.1.19;Outras despesas operacionais;Operação;Orçado;36.305,53
+2026-04;5.1.19;Outras despesas operacionais;Operação;Orçado;39.076,50
+2026-05;5.1.19;Outras despesas operacionais;Operação;Orçado;38.484,51
+2026-06;5.1.19;Outras despesas operacionais;Operação;Orçado;39.036,22
+2026-07;5.1.19;Outras despesas operacionais;Operação;Orçado;36.427,37
+2026-08;5.1.19;Outras despesas operacionais;Operação;Orçado;36.911,23
+2026-09;5.1.19;Outras despesas operacionais;Operação;Orçado;36.231,19
+2026-10;5.1.19;Outras despesas operacionais;Operação;Orçado;38.456,32
+2026-11;5.1.19;Outras despesas operacionais;Operação;Orçado;36.925,92
+2026-12;5.1.19;Outras despesas operacionais;Operação;Orçado;36.501,92
+2026-01;5.1.19;Outras despesas operacionais;Operação;Realizado;13.213,68
+2026-02;5.1.19;Outras despesas operacionais;Operação;Realizado;13.612,52
+2026-03;5.1.19;Outras despesas operacionais;Operação;Realizado;13.031,20
+2026-04;5.1.19;Outras despesas operacionais;Operação;Realizado;13.412,66
+2026-05;5.1.19;Outras despesas operacionais;Operação;Realizado;13.091,75
+2026-06;5.1.19;Outras despesas operacionais;Operação;Realizado;14.120,84
+2026-01;5.1.20;Salários da operação;RH;Orçado;603.717,27
+2026-02;5.1.20;Salários da operação;RH;Orçado;609.952,15
+2026-03;5.1.20;Salários da operação;RH;Orçado;580.610,32
+2026-04;5.1.20;Salários da operação;RH;Orçado;579.076,57
+2026-05;5.1.20;Salários da operação;RH;Orçado;609.365,66
+2026-06;5.1.20;Salários da operação;RH;Orçado;596.740,14
+2026-07;5.1.20;Salários da operação;RH;Orçado;579.791,57
+2026-08;5.1.20;Salários da operação;RH;Orçado;621.379,12
+2026-09;5.1.20;Salários da operação;RH;Orçado;606.783,48
+2026-10;5.1.20;Salários da operação;RH;Orçado;614.812,93
+2026-11;5.1.20;Salários da operação;RH;Orçado;580.335,63
+2026-12;5.1.20;Salários da operação;RH;Orçado;617.435,16
+2026-01;5.1.20;Salários da operação;RH;Realizado;588.614,14
+2026-02;5.1.20;Salários da operação;RH;Realizado;633.930,72
+2026-03;5.1.20;Salários da operação;RH;Realizado;584.247,79
+2026-04;5.1.20;Salários da operação;RH;Realizado;577.341,35
+2026-05;5.1.20;Salários da operação;RH;Realizado;618.072,02
+2026-06;5.1.20;Salários da operação;RH;Realizado;623.280,09

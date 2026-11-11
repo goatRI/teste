@@ -1,0 +1,166 @@
+{
+  "revisoes": [
+    {
+      "rev": 0,
+      "data": "2026-11-11T13:49:13",
+      "descricao": "Emissão inicial",
+      "alteracoes": [
+        "Primeira análise de orcamento_opex_mina_2026.xlsx (51 linhas, R$ 161.828.000,00)."
+      ],
+      "elaborado": "Bot de Orçamento v1.0.0",
+      "verificado": "Aprovado na revisão automática",
+      "status": "aprovado",
+      "resumo": {
+        "arquivo": "orcamento_opex_mina_2026.xlsx",
+        "hash": "de6bcc1f062e9dc0f7ebc39ac5d6bfe29e4139579dadf33b5d532ac77a9d0ec6",
+        "aba": "OPEX 2026",
+        "versao_bot": "1.0.0",
+        "hash_premissas": "fcf106e176b1bfbf",
+        "premissas": {
+          "ipca": 0.045,
+          "tolerancia_crescimento_pp": 0.05,
+          "limiar_subexecucao": 0.15,
+          "limiar_estouro": 0.1,
+          "margem_realinhamento": 0.05,
+          "meta_reducao": 0.1,
+          "teto_reducao_linha": 0.6,
+          "limite_horas_extras": 0.05,
+          "economia_minima_pct_total": 0.0005,
+          "peso_minimo_categoria": 0.003,
+          "sigma_pico": 2.2,
+          "fator_dezembro": 1.6,
+          "similaridade_duplicidade": 0.86,
+          "estimativa_valor_minimo": 100000.0,
+          "estimativa_multiplo": 50000.0,
+          "participacao_generica": 0.01
+        },
+        "total": 161828000.0,
+        "n_linhas": 51,
+        "oportunidades": {
+          "Crescimento acima da inflação em 7 linhas": 3322775.0,
+          "Horas extras acima do patamar saudável": 2006000.0,
+          "Rubricas genéricas e contingência sem destinação definida": 1710000.0,
+          "Eficiência no consumo de combustível": 1348860.0,
+          "Excelência em manutenção": 1275600.0,
+          "Otimização do plano de fogo e da perfuração": 1185100.0,
+          "Otimização de frete e logística": 1154880.0,
+          "Gestão de energia e utilidades": 691840.0,
+          "Possível duplicidade: Licenças de Software - Paradigm / Opit": 420000.0,
+          "Gestão de consultorias e serviços especializados": 673200.0,
+          "Utilização de equipamentos locados": 600000.0,
+          "Gestão de vida útil de pneus": 540800.0,
+          "Consolidação de fornecedores — Manutenção": 523020.0,
+          "Política de viagens": 400750.0,
+          "Racionalização de software, TI e telecom": 356400.0,
+          "Estimativas sem memória de cálculo em 1 linha": 420000.0,
+          "Gasto concentrado em dezembro em 2 linhas": 305590.31,
+          "Gestão de quadro e produtividade": 597700.0,
+          "Equalização de preço unitário — Bits de perfuração 6 3/4\"": 195750.0,
+          "Racionalização da frota leve": 234300.0,
+          "Eficiência em alimentação e transporte de pessoal": 302820.0,
+          "Equalização de preço unitário — Pneus OTR 40.00R57": 160000.0,
+          "Redução de compras e serviços emergenciais": 242800.0,
+          "Recotação do programa de seguros": 133210.0,
+          "Revisão de eventos, patrocínios e comunicação": 127200.0,
+          "Otimização da vigilância": 144600.0,
+          "Picos mensais atípicos em 1 linha": 102012.87
+        },
+        "cenarios": {
+          "conservador": 9666782.17,
+          "base": 17411377.14,
+          "agressivo": 25891405.29,
+          "quick_wins": 7302026.6,
+          "base_zero": 13336355.08,
+          "meta": 16309986.15,
+          "linear": 15713200.0
+        },
+        "skills": [
+          "compras-emergenciais:detector"
+        ],
+        "hash_parecer": null
+      },
+      "reemissao": false
+    },
+    {
+      "rev": 1,
+      "data": "2026-11-11T13:49:22",
+      "descricao": "Inclusão do parecer do analista",
+      "alteracoes": [
+        "Parecer do analista incluído."
+      ],
+      "elaborado": "Bot de Orçamento v1.0.0",
+      "verificado": "Aprovado na revisão automática",
+      "status": "aprovado",
+      "resumo": {
+        "arquivo": "orcamento_opex_mina_2026.xlsx",
+        "hash": "de6bcc1f062e9dc0f7ebc39ac5d6bfe29e4139579dadf33b5d532ac77a9d0ec6",
+        "aba": "OPEX 2026",
+        "versao_bot": "1.0.0",
+        "hash_premissas": "fcf106e176b1bfbf",
+        "premissas": {
+          "ipca": 0.045,
+          "tolerancia_crescimento_pp": 0.05,
+          "limiar_subexecucao": 0.15,
+          "limiar_estouro": 0.1,
+          "margem_realinhamento": 0.05,
+          "meta_reducao": 0.1,
+          "teto_reducao_linha": 0.6,
+          "limite_horas_extras": 0.05,
+          "economia_minima_pct_total": 0.0005,
+          "peso_minimo_categoria": 0.003,
+          "sigma_pico": 2.2,
+          "fator_dezembro": 1.6,
+          "similaridade_duplicidade": 0.86,
+          "estimativa_valor_minimo": 100000.0,
+          "estimativa_multiplo": 50000.0,
+          "participacao_generica": 0.01
+        },
+        "total": 161828000.0,
+        "n_linhas": 51,
+        "oportunidades": {
+          "Crescimento acima da inflação em 7 linhas": 3322775.0,
+          "Horas extras acima do patamar saudável": 2006000.0,
+          "Rubricas genéricas e contingência sem destinação definida": 1710000.0,
+          "Eficiência no consumo de combustível": 1348860.0,
+          "Excelência em manutenção": 1275600.0,
+          "Otimização do plano de fogo e da perfuração": 1185100.0,
+          "Otimização de frete e logística": 1154880.0,
+          "Gestão de energia e utilidades": 691840.0,
+          "Possível duplicidade: Licenças de Software - Paradigm / Opit": 420000.0,
+          "Gestão de consultorias e serviços especializados": 673200.0,
+          "Utilização de equipamentos locados": 600000.0,
+          "Gestão de vida útil de pneus": 540800.0,
+          "Consolidação de fornecedores — Manutenção": 523020.0,
+          "Política de viagens": 400750.0,
+          "Racionalização de software, TI e telecom": 356400.0,
+          "Estimativas sem memória de cálculo em 1 linha": 420000.0,
+          "Gasto concentrado em dezembro em 2 linhas": 305590.31,
+          "Gestão de quadro e produtividade": 597700.0,
+          "Equalização de preço unitário — Bits de perfuração 6 3/4\"": 195750.0,
+          "Racionalização da frota leve": 234300.0,
+          "Eficiência em alimentação e transporte de pessoal": 302820.0,
+          "Equalização de preço unitário — Pneus OTR 40.00R57": 160000.0,
+          "Redução de compras e serviços emergenciais": 242800.0,
+          "Recotação do programa de seguros": 133210.0,
+          "Revisão de eventos, patrocínios e comunicação": 127200.0,
+          "Otimização da vigilância": 144600.0,
+          "Picos mensais atípicos em 1 linha": 102012.87
+        },
+        "cenarios": {
+          "conservador": 9666782.17,
+          "base": 17411377.14,
+          "agressivo": 25891405.29,
+          "quick_wins": 7302026.6,
+          "base_zero": 13336355.08,
+          "meta": 16309986.15,
+          "linear": 15713200.0
+        },
+        "skills": [
+          "compras-emergenciais:detector"
+        ],
+        "hash_parecer": "ecdc35be66627a01"
+      },
+      "reemissao": false
+    }
+  ]
+}

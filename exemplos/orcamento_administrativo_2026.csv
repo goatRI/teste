@@ -1,0 +1,35 @@
+﻿Conta;Descrição;Departamento;Realizado 2025;Orçado 2026
+4.1.01.001;Salários - administrativo;RH;4.820.000,00;5.010.000,00
+4.1.01.002;Encargos sociais;RH;1.830.000,00;1.905.000,00
+4.1.01.003;Benefícios (plano de saúde);RH;960.000,00;1.050.000,00
+4.1.01.004;Horas extras;RH;95.000,00;101.000,00
+4.1.01.005;Treinamentos corporativos;RH;210.000,00;265.000,00
+4.1.02.001;Consultoria tributária;Financeiro;380.000,00;552.000,00
+4.1.02.002;Auditoria externa;Financeiro;290.000,00;304.000,00
+4.1.02.003;Assessoria jurídica trabalhista;Jurídico;410.000,00;428.000,00
+4.1.02.004;Honorários advocatícios (contencioso);Jurídico;620.000,00;655.000,00
+4.1.03.001;Marketing institucional;Marketing;540.000,00;610.000,00
+4.1.03.002;Eventos corporativos;Marketing;300.000,00;450.000,00
+4.1.03.003;Patrocínios;Marketing;250.000,00;280.000,00
+4.1.04.001;Viagens nacionais;Diretoria;330.000,00;372.000,00
+4.1.04.002;Viagens internacionais;Diretoria;210.000,00;336.000,00
+4.1.04.003;Hospedagem e diárias;Diretoria;145.000,00;160.000,00
+4.1.05.001;Aluguel da sede;Facilities;1.440.000,00;1.512.000,00
+4.1.05.002;Condomínio da sede;Facilities;360.000,00;378.000,00
+4.1.05.003;IPTU;Facilities;120.000,00;126.000,00
+4.1.05.004;Energia elétrica - sede;Facilities;210.000,00;228.000,00
+4.1.05.005;Limpeza e conservação;Facilities;280.000,00;296.000,00
+4.1.05.006;Vigilância e portaria;Facilities;330.000,00;348.000,00
+4.1.06.001;Licenças ERP;TI;690.000,00;742.000,00
+4.1.06.002;Licenças de colaboração (e-mail/escritório);TI;260.000,00;285.000,00
+4.1.06.003;Software de BI;TI;;240.000,00
+4.1.06.004;Telefonia móvel;TI;150.000,00;162.000,00
+4.1.06.005;Links de internet e dados;TI;180.000,00;190.000,00
+4.1.07.001;Material de escritório;Facilities;65.000,00;72.000,00
+4.1.07.002;Correios e malotes;Facilities;38.000,00;41.000,00
+4.1.07.003;Cartório e registros;Jurídico;22.000,00;25.000,00
+4.1.08.001;Seguros patrimoniais;Financeiro;175.000,00;183.000,00
+4.1.08.002;Locação de veículos executivos;Diretoria;290.000,00;318.000,00
+4.1.08.003;Despesas bancárias;Financeiro;88.000,00;92.000,00
+4.1.09.001;Despesas diversas;Diretoria;180.000,00;300.000,00
+;TOTAL GERAL (dados fictícios);;16.268.000,00;18.016.000,00
