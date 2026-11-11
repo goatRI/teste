@@ -114,3 +114,13 @@ def test_seguranca_sem_caminho_local_e_sem_formula(tmp_path):
     celulas = [c for row in wb["Orçamento adaptado"].iter_rows() for c in row if isinstance(c.value, str)
                and c.value.startswith("=HYPERLINK")]
     assert celulas and all(c.data_type == "s" for c in celulas)
+
+
+def test_integridade_detecta_alteracao_manual(analises, tmp_path):
+    from bot_orcamento.revisor import verificar_integridade
+
+    r = gerar_relatorio(analises["adm"], tmp_path, navegador=False, excel=False, log=lambda *x: None)
+    assert verificar_integridade(r.html).status == "ok"
+    html = r.html.read_text(encoding="utf-8")
+    r.html.write_text(html.replace("Resumo executivo", "Resumo executivo ", 1), encoding="utf-8")
+    assert verificar_integridade(r.html).status == "falha"

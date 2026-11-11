@@ -78,6 +78,11 @@ def gerar_relatorio(a: Analise, pasta_saida: str | Path, descricao_revisao: str 
                                  "O resultado da revisão mudou entre reimpressões; o checklist impresso é o da "
                                  "última leitura do arquivo.", "Navegador"))
         imprimir(verif)
+    # impressão digital do arquivo emitido: 'revisar' acusa qualquer alteração posterior
+    import hashlib
+
+    rev["arquivo_html"] = html_path.name
+    rev["sha256_html"] = hashlib.sha256(html_path.read_bytes()).hexdigest()
     hist.registrar(rev)
 
     arquivos = {"html": html_path, "historico": hist.caminho}

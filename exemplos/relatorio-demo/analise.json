@@ -6,7 +6,7 @@
     "hash": "de6bcc1f062e9dc0f7ebc39ac5d6bfe29e4139579dadf33b5d532ac77a9d0ec6",
     "aba": "OPEX 2026",
     "data_base": "2026",
-    "gerado_em": "2026-11-11T13:59:14",
+    "gerado_em": "2026-11-11T14:17:06",
     "bot": "Bot de Orçamento",
     "versao_bot": "1.0.0",
     "formato": "xlsx",
@@ -5271,7 +5271,7 @@
   ],
   "revisao": {
     "rev": 1,
-    "data": "2026-11-11T13:59:14",
+    "data": "2026-11-11T14:17:06",
     "descricao": "Inclusão do parecer do analista",
     "alteracoes": [
       "Parecer do analista incluído."
@@ -5279,7 +5279,9 @@
     "elaborado": "Bot de Orçamento v1.0.0",
     "verificado": "Aprovado na revisão automática",
     "status": "aprovado",
-    "reemissao": false
+    "reemissao": false,
+    "arquivo_html": "analise-orcamentaria-opex-mina-norte-2026-demonstracao.html",
+    "sha256_html": "7dd8126d5b7cf39ceadd9948cfff59bc27ad54a61669e69419d2d0ead1fd34d6"
   },
   "verificacoes": [
     {
@@ -5405,7 +5407,7 @@
       "id": "V17",
       "nome": "Rodapé cita fonte, data-base e revisão",
       "status": "ok",
-      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 13:59 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
+      "detalhe": "Fonte: orcamento_opex_mina_2026.xlsx · aba OPEX 2026 · data-base 2026 · gerado em 11/11/2026 14:17 por Bot de Orçamento v1.0.0 · Rev. 01. \n ",
       "grupo": "Texto e formatação"
     },
     {

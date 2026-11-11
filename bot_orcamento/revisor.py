@@ -623,6 +623,30 @@ def revisar_navegador(caminho: str | Path, economia_base: float, total: float, p
     return V
 
 
+def verificar_integridade(caminho: str | Path, historico: str | Path | None = None) -> Verificacao:
+    """Compara o HTML com a impressão digital (SHA-256) gravada pelo bot na emissão."""
+    import hashlib
+
+    caminho = Path(caminho)
+    historico = Path(historico) if historico else caminho.parent / "historico_revisoes.json"
+    nome = "Arquivo idêntico ao emitido pelo bot (sem alteração manual)"
+    if not historico.exists():
+        return Verificacao("V00", nome, "pulado", "historico_revisoes.json não encontrado ao lado do HTML.",
+                           "Integridade")
+    revs = json.loads(historico.read_text(encoding="utf-8")).get("revisoes", [])
+    emitidos = {r.get("sha256_html"): r for r in revs if r.get("arquivo_html") == caminho.name}
+    atual = hashlib.sha256(caminho.read_bytes()).hexdigest()
+    if atual in emitidos:
+        r = emitidos[atual]
+        return Verificacao("V00", nome, "ok", f"Confere com a Rev. {r['rev']:02d} emitida em {r['data']}.",
+                           "Integridade")
+    if not emitidos:
+        return Verificacao("V00", nome, "pulado", "Histórico sem impressão digital deste arquivo.", "Integridade")
+    return Verificacao("V00", nome, "falha",
+                       "O conteúdo NÃO corresponde a nenhuma revisão emitida: o arquivo foi alterado depois da "
+                       "emissão. Gere de novo pelo bot a partir da planilha de origem.", "Integridade")
+
+
 def resumo_status(verificacoes: list[Verificacao]) -> str:
     f = sum(1 for v in verificacoes if v.status == "falha")
     a = sum(1 for v in verificacoes if v.status == "alerta")

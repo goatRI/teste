@@ -2,7 +2,7 @@
   "revisoes": [
     {
       "rev": 0,
-      "data": "2026-11-11T13:59:05",
+      "data": "2026-11-11T14:16:57",
       "descricao": "Emissão inicial",
       "alteracoes": [
         "Primeira análise de orcamento_opex_mina_2026.xlsx (51 linhas, R$ 161.828.000,00)."
@@ -79,11 +79,13 @@
         ],
         "hash_parecer": null
       },
-      "reemissao": false
+      "reemissao": false,
+      "arquivo_html": "analise-orcamentaria-opex-mina-norte-2026-demonstracao.html",
+      "sha256_html": "0f23950c99b111f307bd80ca88fca0f149e9049b0da971c315ae4370e0de9554"
     },
     {
       "rev": 1,
-      "data": "2026-11-11T13:59:14",
+      "data": "2026-11-11T14:17:06",
       "descricao": "Inclusão do parecer do analista",
       "alteracoes": [
         "Parecer do analista incluído."
@@ -160,7 +162,9 @@
         ],
         "hash_parecer": "ecdc35be66627a01"
       },
-      "reemissao": false
+      "reemissao": false,
+      "arquivo_html": "analise-orcamentaria-opex-mina-norte-2026-demonstracao.html",
+      "sha256_html": "7dd8126d5b7cf39ceadd9948cfff59bc27ad54a61669e69419d2d0ead1fd34d6"
     }
   ]
 }

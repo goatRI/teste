@@ -144,7 +144,9 @@ def cmd_revisar(a: argparse.Namespace) -> int:
         from .analise import analisar
 
         total_fonte = analisar(a.fonte, aba=a.aba, pastas_skills=_pastas_skills(None), log=lambda *x: None).total
-    v = revisar_html(html, total_fonte)
+    from .revisor import verificar_integridade
+
+    v = [verificar_integridade(html)] + revisar_html(html, total_fonte)
     if not a.sem_navegador:
         import re
 
